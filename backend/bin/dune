@@ -1,0 +1,4 @@
+(executable
+ (public_name plejady_backend)
+ (name main)
+ (libraries plejady_backend))
