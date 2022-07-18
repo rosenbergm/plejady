@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  plejady_database:
+    image: 'bitnami/postgresql:latest'
+    container_name: 'plejady_database'
+    expose:
+      - 5500
+    ports:
+      - "5500:5432"
+    environment:
+      - POSTGRES_USERNAME=plejady
+      - POSTGRES_DATABASE=plejady
+      - POSTGRES_PASSWORD=plejady
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_POSTGRES_PASSWORD=plejady
