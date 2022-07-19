@@ -2,5 +2,5 @@
  (public_name plejady_backend)
  (name main)
  (libraries plejady_backend dream caqti-driver-postgresql yojson models)
- (preprocess (pps lwt_ppx)))
+ (preprocess (pps lwt_ppx ppx_yojson_conv)))
 
