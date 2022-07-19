@@ -1,5 +1,6 @@
 module Room = Models.Room
 
+let flip f a b = f b a
 let json_response ?status x = x |> Yojson.Safe.to_string |> Dream.json ?status
 
 type error_doc = { error : string } [@@deriving yojson]
@@ -27,7 +28,7 @@ let get_rooms request =
 let create_room request =
   let create (spec : Room.create_room_params) request =
     let%lwt room_request =
-      Dream.sql request (fun db -> Room.create_room db (spec.name, spec.capacity))
+      Dream.sql request @@ flip Room.create_room (spec.name, spec.capacity)
     in
     match room_request with
     | Ok room_id -> `String room_id |> json_response
