@@ -1,0 +1,5 @@
+(library
+   (name models)
+   (libraries caqti-driver-postgresql caqti-lwt re)
+   (preprocess (pps lwt_ppx ppx_yojson_conv))
+)

@@ -2,6 +2,13 @@ ALTER ROLE plejady SUPERUSER;
 
 CREATE EXTENSION if not exists "uuid-ossp";
 
+CREATE TABLE dream_session (
+  id TEXT PRIMARY KEY,
+  label TEXT NOT NULL,
+  expires_at REAL NOT NULL,
+  payload TEXT NOT NULL
+);
+
 CREATE TABLE rooms (
   id uuid NOT NULL DEFAULT uuid_generate_v4() PRIMARY KEY,
   name TEXT NOT NULL,
