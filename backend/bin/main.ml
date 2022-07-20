@@ -1,4 +1,5 @@
 module Room = Models.Room
+module Timeblock = Models.Timeblock
 
 let flip f a b = f b a
 let json_response ?status x = x |> Yojson.Safe.to_string |> Dream.json ?status
@@ -37,6 +38,25 @@ let create_room request =
   json_receiver Room.create_room_params_of_yojson create request
 ;;
 
+let get_timeblocks request =
+  match%lwt Dream.sql request Timeblock.get_timeblocks with
+  | Ok timeblocks -> `List (List.map Timeblock.yojson_of_t timeblocks) |> json_response
+  | Error _ -> Dream.empty `Not_Found
+;;
+
+let create_timeblock request =
+  let create (spec : Timeblock.create_timeblock_params) request =
+    let%lwt timeblock_request =
+      Dream.sql request
+      @@ flip Timeblock.create_timeblock (spec.block_start, spec.block_end)
+    in
+    match timeblock_request with
+    | Ok timeblock_id -> `String timeblock_id |> json_response
+    | Error _ -> Dream.empty `Bad_Request
+  in
+  json_receiver Timeblock.create_timeblock_params_of_yojson create request
+;;
+
 let () =
   Dream.run
   @@ Dream.logger
@@ -47,5 +67,7 @@ let () =
        ; Dream.get "/echo/:word" (fun request -> Dream.html (Dream.param request "word"))
        ; Dream.get "/rooms" get_rooms
        ; Dream.post "/rooms" create_room
+       ; Dream.get "/timeblocks" get_timeblocks
+       ; Dream.post "/timeblocks" create_timeblock
        ]
 ;;
