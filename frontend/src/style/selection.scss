@@ -1,0 +1,175 @@
+@import "colors";
+
+div.page div.selection {
+  margin: auto 10px;
+
+  div.navigation {
+    display: flex;
+    flex-direction: row;
+    height: 41px;
+
+    .logout {
+      font-size: 20px;
+      width: 100px;
+      padding-top: 8px;
+
+      button {
+        border: none;
+        border-radius: 4px;
+      }
+    }
+
+    @media only screen and (max-width: 767px) {
+      .auto-save {
+        width: calc(100vw - 260px);
+
+        > span {
+          display: none;
+        }
+      }
+
+      .logged-in {
+        display: none;
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      .title {
+        font-size: 15px;
+        width: 150px;
+      }
+
+      .auto-save {
+        width: calc(100vw - 660px);
+        text-align: center;
+        padding-top: 9px;
+      }
+
+      .logged-in {
+        width: 400px;
+        padding-top: 9px;
+      }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1199px) {
+      .auto-save > span {
+        display: none;
+      }
+    }
+  }
+
+  .logged-in-mobile {
+    margin-top: 10px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .logged-in-mobile {
+      display: none;
+    }
+  }
+
+  div.talks {
+    overflow-x: auto;
+
+    table {
+      border-collapse: collapse;
+      width: 1100px;
+      height: calc(100vh - 100px);
+      margin: 20px auto;
+
+      thead {
+        tr {
+          height: 100px;
+        }
+      }
+
+      tbody {
+        th {
+          div.block-desc {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+
+          &, * {
+            background: none;
+          }
+        }
+
+        td {
+          position: relative;
+          text-align: center;
+          cursor: pointer;
+
+          p {
+            font-size: 12px;
+            padding: 5px;
+          }
+
+          p, h3 {
+            background: none;
+          }
+
+          &.active {
+            * {
+              color: $color-bg-2;
+            }
+
+            background: $color-primary;
+          }
+
+          &:hover:not(.active) {
+            background: $color-bg-3;
+          }
+
+          &:after {
+            content: "";
+            background: $color-primary;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 66%;
+            height: 2px;
+          }
+        }
+      }
+
+      tr {
+        th, td {
+          background: rgba(250, 237, 204, 0.4);
+        }
+
+        td {
+          width: auto;
+        }
+
+        th {
+          width: 200px;
+
+          div.talks-desc {
+            &, span {
+              background: none;
+            }
+
+            height: 100px;
+            position: relative;
+
+            span.blocks-desc {
+              position: absolute;
+              left: 0;
+              bottom: 30px;
+              transform: rotate(90deg);
+            }
+
+            span.rooms-desc {
+              position: absolute;
+              right: 10px;
+              height: 100%;
+              line-height: 100px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
