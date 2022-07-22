@@ -15,7 +15,11 @@ div.page div.selection {
 
       button {
         border: none;
-        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+          border-bottom: 1px solid $color-primary;
+        }
       }
     }
 
@@ -93,6 +97,10 @@ div.page div.selection {
 
           &, * {
             background: none;
+
+            &::selection {
+              background: $color-secondary;
+            }
           }
         }
 

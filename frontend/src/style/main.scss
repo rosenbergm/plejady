@@ -11,6 +11,10 @@
   color: $color-primary;
   background-color: $color-bg;
   font-family: "Manrope", sans-serif;
+
+  &::selection {
+    background: $color-secondary;
+  }
 }
 
 div.page {
