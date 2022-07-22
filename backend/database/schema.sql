@@ -44,6 +44,8 @@ CREATE TABLE students (
 );
 CREATE UNIQUE INDEX students_uniques ON students(gid, email);
 
+INSERT INTO students (gid, email, is_admin) VALUES ('', 'rosenberg.martin@student.alej.cz', TRUE);
+
 CREATE TABLE students_talks (
   student uuid NOT NULL,
   talk uuid NOT NULL,
