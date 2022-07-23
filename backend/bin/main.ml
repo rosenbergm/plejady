@@ -131,7 +131,10 @@ let login =
        | Ok student_request ->
          (match student_request with
           | None ->
-            (match%lwt Dream.sql request @@ flip Student.create_student (google_user.sub, google_user.email) with
+            (match%lwt
+               Dream.sql request
+               @@ flip Student.create_student (google_user.sub, google_user.email)
+             with
              | Error _ -> Dream.empty `Forbidden
              | Ok new_student_id -> start_user_session request new_student_id)
           | Some student -> start_user_session request student.id))
@@ -150,9 +153,7 @@ let () =
   @@ Dream.sql_pool "postgresql://plejady:plejady@localhost:5500/plejady"
   @@ Dream.sql_sessions
   @@ Dream.router
-       [ Dream.get "/" (fun _ -> Dream.html "Good morning, world!")
-       ; Dream.get "/echo/:word" (fun request -> Dream.html (Dream.param request "word"))
-       ; Dream.get "/rooms" get_rooms
+       [ Dream.get "/rooms" get_rooms
        ; Dream.post "/rooms" create_room
        ; Dream.get "/timeblocks" get_timeblocks
        ; Dream.post "/timeblocks" create_timeblock
