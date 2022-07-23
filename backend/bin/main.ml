@@ -99,6 +99,7 @@ let verify_google_id_token token =
     with
     | _ -> None
   in
+  (* Possibly rewrite in a more monadic way *)
   match jwt_with_claims with
   | None -> Lwt.return None
   | Some jwt ->
@@ -113,25 +114,27 @@ let verify_google_id_token token =
 
 type auth_doc = { token : string } [@@deriving yojson]
 
+let start_user_session request user_id =
+  let%lwt () = Dream.invalidate_session request in
+  let%lwt () = Dream.put_session "user" user_id request in
+  Dream.empty `OK
+;;
+
 (* TODO: Possibly rewrite with binds and maps *)
 let login =
   let login_base login_doc request =
-    let open Lwt.Infix in
     match%lwt verify_google_id_token login_doc.token with
     | None -> Dream.empty `Forbidden
     | Some google_user ->
-      (match%lwt
-         Dream.sql request @@ flip Student.get_student_by_gid google_user.sub
-         >|= Result.to_option
-       with
-       | None -> Dream.empty `Forbidden
-       | Some student_request ->
+      (match%lwt Dream.sql request @@ flip Student.get_student_by_gid google_user.sub with
+       | Error _ -> Dream.empty `Forbidden
+       | Ok student_request ->
          (match student_request with
-          | None -> Dream.empty `Forbidden
-          | Some student ->
-            let%lwt () = Dream.invalidate_session request in
-            let%lwt () = Dream.put_session "user" student.id request in
-            Dream.empty `OK))
+          | None ->
+            (match%lwt Dream.sql request @@ flip Student.create_student (google_user.sub, google_user.email) with
+             | Error _ -> Dream.empty `Forbidden
+             | Ok new_student_id -> start_user_session request new_student_id)
+          | Some student -> start_user_session request student.id))
   in
   json_receiver auth_doc_of_yojson login_base
 ;;
@@ -155,5 +158,6 @@ let () =
        ; Dream.post "/timeblocks" create_timeblock
        ; Dream.get "/students" get_students
        ; Dream.delete "/logout" logout
+       ; Dream.post "/login" login
        ]
 ;;
