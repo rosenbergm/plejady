@@ -13,19 +13,8 @@ view model =
         [ h1 [] [ text "Plejády" ]
         , p [] [ text "Pro přihlášení použijte svoje školní e-maily končící @student.alej.cz." ]
         , p [] [ text "Přihlášky pod jiným e-mailem nejsou možné." ]
-        , viewInput "email" "Email" model.email Email -- TODO: temp login
+        , input [ type_ "email", placeholder "Email", value model.email, onInput Email ] [] -- TODO: temp login
         , button
-            [ onClick
-                (SignIn
-                    { email = model.email
-                    , token = ""
-                    }
-                )
-            ]
+            [ onClick <| SignIn model.email ]
             [ text "Přihlásit pomocí školního účtu" ]
         ]
-
-
-viewInput : String -> String -> String -> (String -> msg) -> Html msg
-viewInput t p v toMsg =
-    input [ type_ t, placeholder p, value v, onInput toMsg ] []

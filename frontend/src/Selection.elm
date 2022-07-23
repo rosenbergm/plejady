@@ -1,10 +1,12 @@
-module Selection exposing (view)
+module Selection exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
-import Model exposing (Model, Talk, User, getTalkByRoomAndBlock)
+import Model exposing (Model)
 import Msg exposing (Msg(..))
+import Talks exposing (getTalkByRoomAndBlock)
+import User exposing (User)
 
 
 view : Model -> User -> Html Msg
@@ -61,7 +63,7 @@ view model user =
                                     ]
                                     :: List.map
                                         (\room ->
-                                            case getTalkByRoomAndBlock model room.id block.id of
+                                            case getTalkByRoomAndBlock room.id block.id model.talks of
                                                 Just talk ->
                                                     td
                                                         [ class
@@ -71,7 +73,7 @@ view model user =
                                                              else
                                                                 ""
                                                             )
-                                                        , onClick (SelectTalk talk.id)
+                                                        , onClick (SelectTalk talk)
                                                         ]
                                                         [ h3 [] [ text talk.name ]
                                                         , p [] [ text talk.annotation ]

@@ -1,10 +1,10 @@
 module Msg exposing (Msg(..))
 
-import Model exposing (User)
+import Talks exposing (Talk)
 
 
 type Msg
-    = SelectTalk String
+    = SelectTalk Talk
     | Email String -- TODO: temp login
-    | SignIn User
+    | SignIn String
     | SignOut
