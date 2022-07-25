@@ -83,7 +83,7 @@ updateSelection talk talks oldSelections =
         selections =
             deselectBlock talk.timeBlock talks oldSelections
     in
-    if isSelected talk.id oldSelections then
+    if not <| isSelected talk.id oldSelections then
         selectTalk talk selections
 
     else

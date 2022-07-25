@@ -7,6 +7,7 @@ import Model exposing (Model)
 import Msg exposing (Msg(..))
 import Talks exposing (getTalkByRoomAndBlock)
 import User exposing (User)
+import Utils exposing (ifThenElse)
 
 
 view : Model -> User -> Html Msg
@@ -65,14 +66,15 @@ view model user =
                                         (\room ->
                                             case getTalkByRoomAndBlock room.id block.id model.talks of
                                                 Just talk ->
-                                                    td
-                                                        [ class
-                                                            (if List.member talk.id model.selections then
-                                                                "active"
+                                                    let
+                                                        isSelected =
+                                                            List.member talk.id model.selections
 
-                                                             else
-                                                                ""
-                                                            )
+                                                        activeClass =
+                                                            ifThenElse isSelected "active" ""
+                                                    in
+                                                    td
+                                                        [ class activeClass
                                                         , onClick (SelectTalk talk)
                                                         ]
                                                         [ h3 [] [ text talk.name ]
