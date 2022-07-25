@@ -41,15 +41,14 @@ view model user =
         , div [ class "talks" ]
             [ table []
                 [ thead []
-                    [ tr []
-                        (th []
+                    [ tr [] <|
+                        th []
                             [ div [ class "talks-desc" ]
                                 [ span [ class "blocks-desc" ] [ text "Blok →" ]
                                 , span [ class "rooms-desc" ] [ text "Místnost →" ]
                                 ]
                             ]
                             :: List.map (\room -> th [] [ text room.name ]) model.rooms
-                        )
                     ]
                 , tbody []
                     (List.map
@@ -75,7 +74,7 @@ view model user =
                                                     in
                                                     td
                                                         [ class activeClass
-                                                        , onClick (SelectTalk talk)
+                                                        , onClick <| SelectTalk talk
                                                         ]
                                                         [ h3 [] [ text talk.name ]
                                                         , p [] [ text talk.annotation ]
