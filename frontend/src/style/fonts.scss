@@ -1,0 +1,16 @@
+@mixin font($name, $variant, $weight: 400, $extension: 'ttf') {
+  @font-face {
+    font-family: "#{$name}";
+    src: url("../fonts/#{$name}/#{$name}-#{$variant}.#{$extension}");
+    font-weight: $weight;
+  }
+}
+
+/* Manrope */
+@include font("Manrope", "ExtraLight", 100);
+@include font("Manrope", "Light", 250);
+@include font("Manrope", "Regular", 400);
+@include font("Manrope", "Medium", 500);
+@include font("Manrope", "SemiBold", 600);
+@include font("Manrope", "Bold", 700);
+@include font("Manrope", "ExtraBold", 900);

@@ -1,0 +1,53 @@
+@import "colors";
+
+@mixin welcome($width: 250px) {
+  margin: calc(50vh - $width / 16 * 9) auto;
+  max-width: $width;
+  font-size: calc($width / 25);
+
+  h1 {
+    font-size: calc($width / 4);
+    margin-bottom: calc($width / 25);
+  }
+
+  p {
+    margin-bottom: calc($width / 25);
+  }
+
+  button {
+    margin: calc($width / 20) auto;
+    border-radius: 4px;
+    padding: calc($width / 60);
+    font-size: calc($width / 25);
+    width: calc($width * 4 / 5);
+  }
+}
+
+div.page div.login {
+  text-align: center;
+  @include welcome(280px);
+
+  button {
+    color: $color-bg;
+    background-color: $color-primary;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      color: $color-primary;
+      background-color: $color-secondary;
+    }
+  }
+
+  @media only screen and (min-width: 600px) and (max-width: 767px) {
+    @include welcome(300px);
+  }
+  @media only screen and (min-width: 768px) and (max-width: 1199px) {
+    @include welcome(400px);
+  }
+  @media only screen and (min-width: 1200px) {
+    @include welcome(500px);
+  }
+}

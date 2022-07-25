@@ -1,0 +1,24 @@
+@import "colors";
+@import "fonts";
+
+@import "login";
+@import "selection";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: $color-primary;
+  background-color: $color-bg;
+  font-family: "Manrope", sans-serif;
+
+  &::selection {
+    background: $color-secondary;
+  }
+}
+
+div.page {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}

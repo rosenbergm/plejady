@@ -1,6 +1,5 @@
-import { Elm } from './Hello.elm'
+import { Elm } from './Main.elm'
 
-Elm.Hello.init({
-  node: document.getElementById('app'),
-  flags: "Initial Message"
-})
+Elm.Main.init({
+  node: document.getElementById('app')
+});
