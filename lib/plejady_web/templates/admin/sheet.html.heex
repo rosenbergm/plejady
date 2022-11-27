@@ -1,0 +1,134 @@
+<%= for presentation <- @presentations do %>
+  <h2><%= presentation.room.name %> (<%= Plejady.Timeblock.format_time(presentation.timeblock.block_start) %>–<%= Plejady.Timeblock.format_time(presentation.timeblock.block_end) %>, <%= length(presentation.registrations) %>/<%= Map.get(presentation, :capacity) || Map.get(presentation.room, :capacity) %>): <%= presentation.presenter %></h2>
+  <section class="pagebreak">
+    <table>
+      <thead>
+        <tr>
+          <th><p>Jméno</p></th>
+          <th><p>Příjmení</p></th>
+          <th><p>E-mail</p></th>
+          <th><p>Podpis</p></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for registration <-presentation.registrations do %>
+          <tr>
+            <td><%= registration.user.given_name %></td>
+            <td><%= registration.user.last_name %></td>
+            <td><%= registration.user.email %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </section>
+<% end %>
+
+
+<h2>Organizátoři</h2>
+  <section class="pagebreak">
+    <table>
+      <thead>
+        <tr>
+          <th><p>Jméno</p></th>
+          <th><p>Příjmení</p></th>
+          <th><p>E-mail</p></th>
+          <th><p>Podpis</p></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>Adam</td>
+            <td>Zelinka</td>
+            <td>zelinka.adam@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Albert</td>
+            <td>Mares</td>
+            <td>mares.albert@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Anna</td>
+            <td>Drhovska</td>
+            <td>drhovska.anna@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Anna</td>
+            <td>Janouskova</td>
+            <td>janouskova.anna@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Eliska</td>
+            <td>Smejkalova</td>
+            <td>smejkalova.eliska@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Hana</td>
+            <td>Mullerova</td>
+            <td>mullerova.hana@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Jolana</td>
+            <td>Kampfova</td>
+            <td>kampfova.jolana@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Karla</td>
+            <td>Polouckova</td>
+            <td>polouckova.karla@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Kateryna</td>
+            <td>Dobrenka</td>
+            <td>dobrenka.kateryna@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Magdalena</td>
+            <td>Zakorova</td>
+            <td>zakorova.magdalena@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Martin</td>
+            <td>Rosenberg</td>
+            <td>rosenberg.martin@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Mia</td>
+            <td>Mendelova</td>
+            <td>mendelova.mia@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Alexandra</td>
+            <td>Chytra</td>
+            <td>chytra.alexandra@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Tereza</td>
+            <td>Podpierova</td>
+            <td>podpierova.tereza@student.alej.cz</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Tereza</td>
+            <td>Prikrylova</td>
+            <td>prikrylova.tereza@student.alej.cz</td>
+            <td></td>
+          </tr>
+      </tbody>
+    </table>
+
+  </section>

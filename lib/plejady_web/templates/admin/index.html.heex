@@ -1,0 +1,37 @@
+<main class="app_container">
+  <header class="app_header">
+    <img src="/images/logo_small.svg">
+    <section>
+      <p>Panel administrace</p>
+    </section>
+  </header>
+
+  <table>
+    <thead>
+      <tr>
+        <th>blokmistnost</th>
+        <%= for room <- @rooms do %>
+          <th text-align="center"><%= room.name %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for timeblock <- @timeblocks do %>
+        <tr>
+          <td><%= Plejady.Timeblock.format_time(timeblock.block_start) %><br>
+              —<br>
+              <%= Plejady.Timeblock.format_time(timeblock.block_end) %>
+          </td>
+          <%= for room <- @rooms do %>
+            <% presentation = Enum.find(@presentations, %{}, &(&1.room_id == room.id and &1.timeblock_id == timeblock.id)) %>
+            <td>
+              <p>Přednášející: <%= Map.get(presentation, :presenter) %></p>
+              <p>Popis: <%= Map.get(presentation, :description) %></p>
+              <%= link "Upravit", to: "/presentation/#{Map.get(presentation, :id)}", method: :get %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>

@@ -1,0 +1,5 @@
+<h1>ahoj</h1>
+
+<%= for timeblock <- @timeblocks do %>
+  <p><%= timeblock.id %>: <%= Plejady.Timeblock.format_time(timeblock.block_start) %> - <%= Plejady.Timeblock.format_time(timeblock.block_end) %></p>
+<% end %>
