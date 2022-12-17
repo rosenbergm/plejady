@@ -1,74 +1,78 @@
 <main class="app_container">
   <header class="app_header">
-    <img src="/images/logo_small.svg">
-    <%# <p>Změny se automaticky ukládají!</p> %>
+    <img src="/images/logo_small.svg" />
     <p>Váš aktuální rozvrh</p>
     <section>
-      <%= link "Odhlásit se", to: "/logout", method: :delete %>
+      <%= link("Odhlásit se", to: "/logout", method: :delete) %>
       <p>Přihlášen/a jako <b><%= @current_user.email %></b></p>
-      <%# <%= if @current_user.is_admin do %1> %>
-      <%#   <%= link "Panel administrace", to: "/admin", method: :get %1> %>
-      <%# <% end %1> %>
+      <%= if @current_user.is_admin do %>
+        <%= link("Panel administrace", to: "/admin", method: :get) %>
+      <% end %>
     </section>
   </header>
 
   <section class="table">
-    <table>
+    <table cellpadding="0" cellspacing="0" style="height:100%;">
       <thead>
         <tr>
-        <th class="legend">
-        <p class="right">Místnost -&gt;</p>
-        <p class="left">Blok -&gt;</p>
-        </th>
-        <%= for room <- @rooms do %>
-        <th text-align="center" class="room"><%= room.name %></th>
-        <% end %>
-      </tr>
+          <th class="legend">
+            <p class="right">Místnost →</p>
+            <p class="left">Blok →</p>
+          </th>
+          <%= for room <- @rooms do %>
+            <th text-align="center" class="room">
+              <%= room.name %>
+            </th>
+          <% end %>
+        </tr>
       </thead>
       <tbody>
-      <%= for timeblock <- @timeblocks do %>
-        <tr>
-        <td class="timeblock"><%= Plejady.Timeblock.format_time(timeblock.block_start) %><br>
-          —<br>
-          <%= Plejady.Timeblock.format_time(timeblock.block_end) %>
-          </td>
-          <%= for room <- @rooms do %>
-            <% presentation = Enum.find(@presentations, nil, &(&1.room_id == room.id and &1.timeblock_id == timeblock.id)) %>
-            <%= if presentation == nil do %>
-              <td
-              class="presentation disabled"
-              ></td>
+        <%= for timeblock <- @timeblocks do %>
+          <tr>
+            <td class="timeblock">
+              <%= Plejady.Timeblock.format_time(timeblock.block_start) %><br /> —<br />
+              <%= Plejady.Timeblock.format_time(timeblock.block_end) %>
+            </td>
+            <%= for room <- @rooms do %>
+              <% presentation =
+                Enum.find(
+                  @presentations,
+                  nil,
+                  &(&1.room_id == room.id and &1.timeblock_id == timeblock.id)
+                ) %>
+              <%= if presentation==nil do %>
+                <td class="presentation disabled"></td>
               <% else %>
-              <% max_capacity = Map.get(presentation, :capacity) || Map.get(room, :capacity) %>
-              <%# <td %>
-              <%# class={"presentation #{if (Map.get(@registry, Map.get(presentation, :id), []) |> length()) >= max_capacity do "disabled" end} #{if (@current_user.id in Map.get(@registry, Map.get(presentation, :id), [])) do "sel" end}"} %>
-              <%# phx-click="toggle_presentation" %> 
-              <%# phx-value-presentation={Map.get(presentation, :id)} %>
-              <%# phx-value-timeblock={Map.get(timeblock, :id)} %>
-              <%# phx-value-capacity={max_capacity} %>
-              <%# > %>
-              <td
-              class={"presentation #{if (Map.get(@registry, Map.get(presentation, :id), []) |> length()) >= max_capacity do "disabled" end} #{if (@current_user.id in Map.get(@registry, Map.get(presentation, :id), [])) do "sel" end}"}
-              >
-              <div
-              class="progress_container"
-              style={"--progress: #{(Map.get(@registry, Map.get(presentation, :id), []) |> length()) / max_capacity}"}
-              >
-              <progress
-              value={Map.get(@registry, Map.get(presentation, :id), []) |> length()}
-              max={max_capacity}
-              >
-              </progress>
-              </div>
-              <div class="content">
-              <em><%= Map.get(presentation, :presenter) %></em>
-              <p><%= Map.get(presentation, :description) %></p>
-              <p><%= Map.get(@registry, Map.get(presentation, :id), []) |> length() %>/<%= max_capacity %></p>
-              </div>
-              </td>
+                <% max_capacity = Map.get(presentation, :capacity) || Map.get(room, :capacity) %>
+                <td class={"presentation #{if (Map.get(@registry, Map.get(presentation, :id), []) |>
+                                      length()) >= max_capacity do "disabled" end} #{if (@current_user.id in
+                                      Map.get(@registry, Map.get(presentation, :id), [])) do "sel" end}"}>
+                  <div
+                    class="progress_container"
+                    style={"--progress: #{(Map.get(@registry,
+                                        Map.get(presentation, :id), []) |> length()) / max_capacity}"}
+                  >
+                    <progress
+                      value={Map.get(@registry, Map.get(presentation, :id), []) |> length()}
+                      max={max_capacity}
+                    >
+                    </progress>
+                  </div>
+                  <div class="content">
+                    <em>
+                      <%= Map.get(presentation, :presenter) %>
+                    </em>
+                    <p>
+                      <%= Map.get(presentation, :description) %>
+                    </p>
+                    <p>
+                      <%= Map.get(@registry, Map.get(presentation, :id), []) |> length() %>/<%= max_capacity %>
+                    </p>
+                  </div>
+                </td>
               <% end %>
             <% end %>
-        </tr>
+          </tr>
         <% end %>
       </tbody>
     </table>

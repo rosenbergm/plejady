@@ -12,7 +12,7 @@ msgstr ""
 
 ## From Ecto.Changeset.cast/4
 msgid "can't be blank"
-msgstr ""
+msgstr "Pole nesmí být prázdné!"
 
 ## From Ecto.Changeset.unique_constraint/3
 msgid "has already been taken"
@@ -97,16 +97,16 @@ msgstr[1] ""
 
 ## From Ecto.Changeset.validate_number/3
 msgid "must be less than %{number}"
-msgstr ""
+msgstr "Číslo musí být menší než %{number}"
 
 msgid "must be greater than %{number}"
-msgstr ""
+msgstr "Číslo musí být větší než %{number}"
 
 msgid "must be less than or equal to %{number}"
-msgstr ""
+msgstr "Číslo musí být menší nebo rovno %{number}"
 
 msgid "must be greater than or equal to %{number}"
-msgstr ""
+msgstr "Číslo musí být větší nebo rovno %{number}"
 
 msgid "must be equal to %{number}"
-msgstr ""
+msgstr "Číslo musí být rovno %{number}"

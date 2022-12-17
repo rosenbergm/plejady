@@ -2,6 +2,8 @@ defmodule Plejady.Timeblock do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Plejady.Repo
+
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
@@ -16,6 +18,18 @@ defmodule Plejady.Timeblock do
     %Plejady.Timeblock{}
     |> cast(params, [:block_start, :block_end])
     |> validate_required([:block_start, :block_end])
+  end
+
+  def changeset(timeblock, params \\ %{}) do
+    timeblock
+    |> cast(params, [:block_start, :block_end])
+    |> validate_required([:block_start, :block_end])
+  end
+
+  def create_timeblock(params \\ %{}) do
+    %Plejady.Timeblock{}
+    |> changeset(params)
+    |> Repo.insert()
   end
 
   def edit(timeblock, block_start, block_end) do

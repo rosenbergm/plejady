@@ -1,37 +1,254 @@
 <main class="app_container">
+  <%= case @open_modal do %>
+    <% {"room"} -> %>
+      <div class="modal">
+        <div class="backdrop"></div>
+        <div class="content">
+          <.live_component module={PlejadyWeb.Admin.CreateRoom} id="new_room" />
+        </div>
+      </div>
+    <% {"timeblock"} -> %>
+      <div class="modal">
+        <div class="backdrop"></div>
+        <div class="content">
+          <.live_component module={PlejadyWeb.Admin.CreateRoom} id="new_room" />
+        </div>
+      </div>
+    <% {"presentation", %{room_id: room_id, room_capacity: room_capacity, timeblock_id: timeblock_id}} -> %>
+      <div class="modal">
+        <div class="backdrop"></div>
+        <div class="content">
+          <.live_component
+            module={PlejadyWeb.Admin.CreatePresentation}
+            id="new_presentation"
+            room_id={room_id}
+            room_capacity={room_capacity}
+            timeblock_id={timeblock_id}
+          />
+        </div>
+      </div>
+    <% {"presentation-edit", %{presentation_id: presentation_id}} -> %>
+      <div class="modal">
+        <div class="backdrop"></div>
+        <div class="content">
+          <.live_component
+            module={PlejadyWeb.Admin.EditPresentation}
+            id="edit_presentation"
+            presentation_id={presentation_id}
+          />
+        </div>
+      </div>
+    <% {:none} -> %>
+  <% end %>
+
   <header class="app_header">
-    <img src="/images/logo_small.svg">
+    <img src="/images/logo_small.svg" />
     <section>
       <p>Panel administrace</p>
     </section>
   </header>
 
-  <table>
-    <thead>
-      <tr>
-        <th>blokmistnost</th>
-        <%= for room <- @rooms do %>
-          <th text-align="center"><%= room.name %></th>
-        <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <%= for timeblock <- @timeblocks do %>
+  <section class="table">
+    <table cellpadding="0" cellspacing="0" style="height:100%;">
+      <thead>
         <tr>
-          <td><%= Plejady.Timeblock.format_time(timeblock.block_start) %><br>
-              —<br>
-              <%= Plejady.Timeblock.format_time(timeblock.block_end) %>
-          </td>
+          <th class="legend">
+            <p class="right">
+              Místnost →
+            </p>
+            <p class="left">
+              Blok →
+            </p>
+          </th>
           <%= for room <- @rooms do %>
-            <% presentation = Enum.find(@presentations, %{}, &(&1.room_id == room.id and &1.timeblock_id == timeblock.id)) %>
-            <td>
-              <p>Přednášející: <%= Map.get(presentation, :presenter) %></p>
-              <p>Popis: <%= Map.get(presentation, :description) %></p>
-              <%= link "Upravit", to: "/presentation/#{Map.get(presentation, :id)}", method: :get %>
-            </td>
+            <th text-align="center" class="room">
+              <%= room.name %>
+              <button class="icon" phx-click="delete-room" phx-value-room-id={room.id}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 6h18"></path>
+                  <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                  <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                  <line x1="10" y1="11" x2="10" y2="17"></line>
+                  <line x1="14" y1="11" x2="14" y2="17"></line>
+                </svg>
+              </button>
+            </th>
           <% end %>
+          <th>
+            <button class="icon" phx-click="open-room-modal">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
+          </th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <%= for timeblock <- @timeblocks do %>
+          <tr>
+            <td class="timeblock">
+              <div class="new">
+                <%= Plejady.Timeblock.format_time(timeblock.block_start) %><br /> —<br />
+                <%= Plejady.Timeblock.format_time(timeblock.block_end) %><br />
+                <button
+                  class="icon"
+                  phx-click="delete-timeblock"
+                  phx-value-timeblock-id={timeblock.id}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M3 6h18"></path>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                  </svg>
+                </button>
+              </div>
+            </td>
+            <%= for room <- @rooms do %>
+              <% presentation =
+                Enum.find(
+                  @presentations,
+                  nil,
+                  &(&1.room_id == room.id and &1.timeblock_id == timeblock.id)
+                ) %>
+              <%= if presentation==nil do %>
+                <td class="presentation">
+                  <button
+                    class="icon"
+                    phx-click="open-presentation-modal"
+                    phx-value-room-id={room.id}
+                    phx-value-room-capacity={room.capacity}
+                    phx-value-timeblock-id={timeblock.id}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </button>
+                </td>
+              <% else %>
+                <% max_capacity = Map.get(presentation, :capacity) || Map.get(room, :capacity) %>
+                <td class="presentation">
+                  <div class="content">
+                    <em>
+                      <%= Map.get(presentation, :presenter) %>
+                    </em>
+                    <p>
+                      <%= Map.get(presentation, :description) %>
+                    </p>
+                    <p>
+                      Kapacita: <%= max_capacity %>
+                    </p>
+                    <div>
+                      <button
+                        class="icon"
+                        phx-click="open-presentation-edit-modal"
+                        phx-value-presentation-id={presentation.id}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7">
+                          </path>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z">
+                          </path>
+                        </svg>
+                      </button>
+                      <button
+                        class="icon"
+                        phx-click="delete-presentation"
+                        phx-value-presentation-id={presentation.id}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M3 6h18"></path>
+                          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                          <line x1="10" y1="11" x2="10" y2="17"></line>
+                          <line x1="14" y1="11" x2="14" y2="17"></line>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+        <tr>
+          <td>
+            <button class="icon" phx-click="open-timeblock-modal">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 </main>

@@ -17,21 +17,17 @@ defmodule PlejadyWeb.AdminController do
     )
   end
 
-  def sheet(conn, %{"key" => key}) do
-    if key == "43c1ecb505e1a9ab7433e48a3a031df6" do
-      presentations =
-        from(p in Presentation,
-          preload: [:room, :timeblock, registrations: [:user]],
-          select: p
-        )
-        |> Repo.all()
-
-      render(conn, "sheet.html",
-        presentations: presentations,
-        user: conn.assigns.current_user
+  def sheet(conn, _params) do
+    presentations =
+      from(p in Presentation,
+        preload: [:room, :timeblock, registrations: [:user]],
+        select: p
       )
-    else
-      redirect(conn, to: "/")
-    end
+      |> Repo.all()
+
+    render(conn, "sheet.html",
+      presentations: presentations,
+      user: conn.assigns.current_user
+    )
   end
 end

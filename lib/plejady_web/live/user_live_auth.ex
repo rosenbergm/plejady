@@ -1,5 +1,5 @@
 defmodule PlejadyWeb.UserLiveAuth do
-  import Phoenix.LiveView
+  use PlejadyWeb, :live_view
 
   alias Plejady.Token
 

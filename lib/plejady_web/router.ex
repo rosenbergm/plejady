@@ -19,12 +19,6 @@ defmodule PlejadyWeb.Router do
   end
 
   scope "/", PlejadyWeb do
-    pipe_through [:browser]
-
-    get "/sheet", AdminController, :sheet
-  end
-
-  scope "/", PlejadyWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
     get "/", PageController, :index
@@ -43,6 +37,10 @@ defmodule PlejadyWeb.Router do
 
   scope "/admin", PlejadyWeb do
     pipe_through [:browser, :require_authenticated_user, :require_admin]
+
+    live "/", AdminLive, :index
+
+    get "/sheet", AdminController, :sheet
   end
 
   # Other scopes may use custom stacks.
