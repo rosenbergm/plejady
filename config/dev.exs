@@ -1,23 +1,5 @@
 import Config
 
-# Configure your database
-# config :plejady, Plejady.Repo,
-#   username: "postgres",
-#   password: "postgres",
-#   hostname: "localhost",
-#   database: "plejady_dev",
-#   show_sensitive_data_on_connection_error: true,
-#   pool_size: 10
-
-config :plejady, Plejady.Repo,
-  database: "./db.sqlite3",
-  pool_size: 10,
-  show_sensitive_data_on_connection_error: true
-
-config :elixir_auth_google,
-  client_id: "788205997300-jguh4a1dv1c663l3ug9s4bok2skn83ej.apps.googleusercontent.com",
-  client_secret: "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"
-
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -33,8 +15,7 @@ config :plejady, PlejadyWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "Iu3Icvx7prqu48XoziQbLW0U0qMHWRNFMRTew+Vsy2kv9ZwXmoCXYnMtadbCV0xz",
   watchers: [
-    # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    node: ["build.js", "--watch", cd: Path.expand("../assets", __DIR__)]
   ]
 
 # ## SSL Support
@@ -81,3 +62,5 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+import_config "dev.secret.exs"
