@@ -347,12 +347,13 @@ td {
 
 th.legend {
   max-width: 200px;
-  padding: 3rem 0.5rem;
+  padding: 1.5rem 0.5rem;
 }
 
 th,
 td {
-  background: #FAEDCC50;
+  background: rgba(#FAEDCC, 0.5);
+  // background: rgba(#f0f, 0.5);
 
   text-align: center;
 
@@ -408,8 +409,27 @@ td.timeblock {
 
 td.presentation {
   position: relative;
+}
 
-  /* cursor: pointer; */
+thead tr th:first-child,
+tbody tr td:first-child {
+  width: 8rem;
+  min-width: 8rem;
+  max-width: 8rem;
+  word-break: break-all;
+}
+
+thead tr th:not(:first-child) {
+  min-width: 10rem;
+  word-break: break-all;
+}
+
+thead tr th:first-child,
+tbody tr td:first-child {
+  width: 8rem;
+  min-width: 8rem;
+  max-width: 8rem;
+  word-break: break-all;
 }
 
 .disabled {
@@ -583,11 +603,11 @@ section.table {
   }
 
   table {
-    width: 1200px;
+    width: auto;
   }
 
   th.legend {
-    height: 64px;
+    height: 3rem;
   }
 }
 

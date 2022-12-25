@@ -9,7 +9,7 @@ defmodule PlejadyWeb.AdminLive do
   end
 
   def mount(_params, _session, socket) do
-    timeblocks = Repo.all(Timeblock)
+    timeblocks = Repo.all(from t in Timeblock, order_by: t.block_start, select: t)
     rooms = Repo.all(from r in Room, order_by: r.name, select: r)
     presentations = Repo.all(Presentation)
 
@@ -21,9 +21,6 @@ defmodule PlejadyWeb.AdminLive do
        presentations: presentations,
        # This can be `:none` or {<name>, <params>}
        open_modal: {:none}
-       #  show_room_modal: false,
-       #  show_timeblock_modal: false,
-       #  show_presentation_modal: false
      )}
   end
 

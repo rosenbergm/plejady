@@ -14,13 +14,15 @@ defmodule PlejadyWeb.AppLive do
   def mount(_params, _session, socket) do
     PlejadyWeb.Endpoint.subscribe("presentations")
 
+    rooms = Repo.all(from r in Room, order_by: r.name, select: r)
+    timeblocks = Repo.all(from t in Timeblock, order_by: t.block_start, select: t)
+
     {:ok,
      socket
      |> assign(
        registry: Cachex.get!(:cache, :registry),
-       timeblocks: Repo.all(Timeblock),
-       # rooms: from(r in Room, order_by: [{:asc, :name}], select: r) |> Repo.all(),
-       rooms: Room |> Repo.all(),
+       timeblocks: timeblocks,
+       rooms: rooms,
        presentations: Repo.all(Presentation)
      )}
   end
