@@ -37,3 +37,4 @@ npm-debug.log
 *.db-*
 
 config/dev.secret.exs
+config/prod.secret.exs
