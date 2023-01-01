@@ -18,9 +18,8 @@ defmodule Plejady.Application do
       PlejadyWeb.Endpoint,
       # Start a worker by calling: Plejady.Worker.start_link(arg)
       # {Plejady.Worker, arg}
-      {Cachex, name: :cache},
+      {Cachex, name: :registry},
       Plejady.CacheInitiator
-      # Plejady.Updater
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

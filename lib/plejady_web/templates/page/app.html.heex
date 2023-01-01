@@ -44,16 +44,18 @@
                 <td class="presentation disabled"></td>
               <% else %>
                 <% max_capacity = Map.get(presentation, :capacity) || Map.get(room, :capacity) %>
-                <td class={"presentation #{if (Map.get(@registry, Map.get(presentation, :id), []) |>
-                                      length()) >= max_capacity do "disabled" end} #{if (@current_user.id in
-                                      Map.get(@registry, Map.get(presentation, :id), [])) do "sel" end}"}>
+                <td
+                  class={"presentation #{if (Map.get(@occupancy, Map.get(presentation, :id), 0)) >= max_capacity do "disabled" end} #{if presentation.id in @signed_up_for do "sel" end}"}
+                  phx-click="toggle_presentation"
+                  phx-value-presentation={presentation.id}
+                >
                   <div
                     class="progress_container"
-                    style={"--progress: #{(Map.get(@registry,
-                                        Map.get(presentation, :id), []) |> length()) / max_capacity}"}
+                    style={"--progress: #{(Map.get(@occupancy,
+                                        Map.get(presentation, :id), 0)) / max_capacity}"}
                   >
                     <progress
-                      value={Map.get(@registry, Map.get(presentation, :id), []) |> length()}
+                      value={Map.get(@occupancy, Map.get(presentation, :id), 0)}
                       max={max_capacity}
                     >
                     </progress>
@@ -66,7 +68,7 @@
                       <%= Map.get(presentation, :description) %>
                     </p>
                     <p>
-                      <%= Map.get(@registry, Map.get(presentation, :id), []) |> length() %>/<%= max_capacity %>
+                      <%= Map.get(@occupancy, Map.get(presentation, :id)) %>/<%= max_capacity %>
                     </p>
                   </div>
                 </td>

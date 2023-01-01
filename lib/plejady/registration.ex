@@ -21,10 +21,14 @@ defmodule Plejady.Registration do
     |> Repo.insert!()
   end
 
-  def delete(presentation_id, user_id) do
-    from(r in Plejady.Registration,
-      where: r.presentation_id == ^presentation_id and r.user_id == ^user_id
-    )
-    |> Repo.delete_all()
+  def move(from, to, user_id) do
+    Repo.transaction(fn ->
+      from(r in Plejady.Registration,
+        where: r.presentation_id == ^from and r.user_id == ^user_id
+      )
+      |> Repo.delete_all()
+
+      new(to, user_id)
+    end)
   end
 end

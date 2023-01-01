@@ -7,6 +7,7 @@ defmodule PlejadyWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_plejady_key",
+    # FIXME: Uncovered signing salt
     signing_salt: "LYPuysoA"
   ]
 
