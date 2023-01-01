@@ -1,3 +1,13 @@
+@import 'phoenix.css';
+
+// Setup
+
+// *,
+// *:after,
+// *:before {
+//   box-sizing: border-box;
+// }
+
 // Theme
 
 $primary: #4F3366;
@@ -52,6 +62,10 @@ $secondary: #FFFCF0;
   display: block;
   margin: -1rem 0 1rem;
 }
+
+// Forms
+
+
 
 /* LiveView specific classes for your customization */
 .phx-no-feedback.invalid-feedback,
@@ -255,10 +269,12 @@ a {
 
 h3 {
   font-weight: 600;
+  font-size: 1.5rem;
 }
 
 h4 {
   font-weight: bold;
+  font-size: 1.2rem;
 }
 
 a {
@@ -282,6 +298,11 @@ main.intro_container {
 
   display: grid;
   place-items: center;
+
+  &>section {
+    min-width: Min(30rem, calc(100% - 2rem));
+    padding: 0 1rem;
+  }
 }
 
 main.app_container {
