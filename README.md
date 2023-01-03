@@ -1,19 +1,22 @@
 # Plejady
 
-To start your Phoenix server:
+An event management system for a school event.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Development
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+1. [Install](https://elixir-lang.org/install.html) Elixir
+2. Run `mix deps.get` to install dependencies
+3. Run `mix env` for an interactive guide to setup the development environment.
+4. Run `mix phx.server` to start a local server!
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+> ⚠️ You need to have a PostgreSQL database running on your local machine.
 
-## Learn more
+## Deployment
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+You can either deploy to fly.io (easy-ish) or self-host the entire project. If you don't have a server, then go for fly.io or contact Martin Rosenberg (nitram.rosenberg@gmail.com), he will lend you one.
+
+### Docker
+
+To deploy with Docker, use the provided [docker-compose.yml](docker-compose.yml) to run the app with a separate PostgreSQL database.
+
+**IMPORTANT:** Change the database password and SECRET_KEY_BASE (which you can generate with `mix phx.gen.secret`). 

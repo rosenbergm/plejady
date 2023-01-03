@@ -38,3 +38,6 @@ npm-debug.log
 
 config/dev.secret.exs
 config/prod.secret.exs
+
+.elixir_ls/
+rel/

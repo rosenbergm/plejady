@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=plejady
+      - POSTGRES_PASSWORD=Mumbo-Collapse-Stability9
+    volumes:
+      - database:/var/lib/postgresql/data
+
+  plejady:
+    # FIXME: Change for example
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - database
+    ports:
+      - 4949:443
+    environment:
+      - GOOGLE_CLIENT_ID=788205997300-jguh4a1dv1c663l3ug9s4bok2skn83ej.apps.googleusercontent.com
+      - GOOGLE_CLIENT_SECRET=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
+      - SECRET_KEY_BASE=GzQ3JXEW8HB9RqVBxe8nsWvyMnzl3jyY9VfgVMbUpmAvdB1P1D1RbCfKgBaW9WaN
+      - DATABASE_URL=ecto://plejady:Mumbo-Collapse-Stability9@database/plejady
+    restart: always
+    links:
+      - database
+
+volumes:
+  database:
+    driver: local

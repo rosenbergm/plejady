@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "devDependencies": {
-    "esbuild": "^0.16.6",
-    "esbuild-sass-plugin": "^2.4.3"
-  },
+  "devDependencies": {},
   "dependencies": {
     "phoenix": "../deps/phoenix",
     "phoenix_html": "../deps/phoenix_html",
-    "phoenix_live_view": "../deps/phoenix_live_view"
+    "phoenix_live_view": "../deps/phoenix_live_view",
+    "esbuild": "^0.16.6",
+    "esbuild-sass-plugin": "^2.4.3"
   }
 }

@@ -87,14 +87,12 @@ defmodule Plejady.Registry do
   def fetch_signed_up_for(registry, user_id) do
     registry.presentations
     |> Enum.reduce([], fn %{id: id}, acc ->
-      {_, cache_response} = fetch_signed_users(id)
-
-      case cache_response do
-        {:ok, users} when not is_nil(users) ->
-          if user_id in users,
-            do: [id | acc],
-            else: acc
-
+      with {_, cache_response} <- fetch_signed_users(id),
+           {:ok, users} when not is_nil(users) <- cache_response do
+        if user_id in users,
+          do: [id | acc],
+          else: acc
+      else
         _ ->
           acc
       end

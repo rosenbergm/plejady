@@ -11,7 +11,7 @@ defmodule PlejadyWeb.AppLive do
   end
 
   def mount(_params, _session, socket) do
-    PlejadyWeb.Endpoint.subscribe("presentations")
+    if connected?(socket), do: PlejadyWeb.Endpoint.subscribe("presentations")
 
     test_id = Ecto.UUID.generate()
 
