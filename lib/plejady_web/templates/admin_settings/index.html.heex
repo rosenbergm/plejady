@@ -1,0 +1,32 @@
+<main class="app_container">
+  <header class="app_header">
+    <img src="/images/logo_small.svg" />
+    <section>
+      <%= link("Zpět na panel administrace", to: "/admin", method: :get) %>
+      <p>Další nastaveni</p>
+    </section>
+  </header>
+
+  <section class="table">
+    <h4>Seznam administrátorstva</h4>
+    <ul>
+      <%= for admin <- @admins do %>
+        <li><%= admin.given_name %> <%= admin.last_name %> (<%= admin.email %>)</li>
+      <% end %>
+    </ul>
+    <div>
+      <.form
+        :let={f}
+        for={@changeset}
+        phx-change="validate_suggested_admin"
+        phx-submit="save_suggested_admin"
+      >
+        <%= label(f, :email) %>
+        <%= text_input(f, :email) %>
+        <%= error_tag(f, :email) %>
+
+        <%= submit("Uložit", phx_disable_with: "Ukládám...") %>
+      </.form>
+    </div>
+  </section>
+</main>

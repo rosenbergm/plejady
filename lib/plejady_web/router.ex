@@ -54,6 +54,7 @@ defmodule PlejadyWeb.Router do
     pipe_through [:browser, :require_authenticated_user, :require_admin]
 
     live "/", AdminLive, :index
+    live "/settings", AdminSettingsLive, :index
 
     get "/sheet", AdminController, :sheet
   end

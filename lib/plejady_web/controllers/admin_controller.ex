@@ -1,7 +1,7 @@
 defmodule PlejadyWeb.AdminController do
   use PlejadyWeb, :controller
 
-  alias Plejady.{Presentation, Repo, Room, Timeblock}
+  alias Plejady.{Presentation, Repo, Room, Timeblock, User}
   import Ecto.Query
 
   def index(conn, _params) do

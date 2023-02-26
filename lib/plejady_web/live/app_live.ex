@@ -1,6 +1,6 @@
 defmodule PlejadyWeb.AppLive do
   use PlejadyWeb, :live_view
-  # on_mount PlejadyWeb.UserLiveAuth
+  on_mount PlejadyWeb.UserLiveAuth
 
   alias Plejady.{Registry, Presentation, Repo, Room, Timeblock}
 
@@ -24,12 +24,7 @@ defmodule PlejadyWeb.AppLive do
        signed_up_for: Registry.fetch_signed_up_for(registry, test_id),
        timeblocks: registry.timeblocks,
        rooms: registry.rooms,
-       presentations: registry.presentations,
-       current_user: %{
-         email: "hocuspocus",
-         id: test_id,
-         is_admin: false
-       }
+       presentations: registry.presentations
      )}
   end
 
