@@ -15,14 +15,11 @@
       <% end %>
     </ul>
     <div>
-      <.form
-        :let={f}
-        for={@changeset}
-        phx-change="validate_suggested_admin"
-        phx-submit="save_suggested_admin"
-      >
+      <.form :let={f} for={@changeset} phx-change="validate_promotion" phx-submit="save_promotion">
         <%= label(f, :email) %>
-        <%= text_input(f, :email) %>
+        <%= text_input(f, :email,
+          placeholder: "E-mail nového administrátora (prijmeni.jmeno@student.alej.cz)"
+        ) %>
         <%= error_tag(f, :email) %>
 
         <%= submit("Uložit", phx_disable_with: "Ukládám...") %>

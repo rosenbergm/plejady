@@ -2,6 +2,7 @@ defmodule Mix.Tasks.Env do
   use Mix.Task
 
   @dev_secret "config/dev.secret.exs"
+  @dev "config/dev.exs"
   @prod_secret "config/prod.secret.exs"
 
   def run(_) do
@@ -43,7 +44,7 @@ defmodule Mix.Tasks.Env do
 
       IO.puts("Paráda, zapisuji do config/dev.secret.exs!")
 
-      File.write(@dev_secret, """
+      File.write!(@dev_secret, """
       import Config
 
       config :elixir_auth_google,
@@ -58,6 +59,12 @@ defmodule Mix.Tasks.Env do
         show_sensitive_data_on_connection_error: true,
         pool_size: 10
       """)
+
+      File.write!(@dev, """
+
+      import_config "dev.secret.exs"
+
+      """, [:append])
 
       IO.puts("Zapsáno!")
     end

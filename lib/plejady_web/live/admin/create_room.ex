@@ -28,11 +28,11 @@ defmodule PlejadyWeb.Admin.CreateRoom do
         </button>
       </div>
       <.form :let={f} for={@changeset} phx-change="validate" phx-submit="save" phx-target={@myself}>
-        <%= label(f, :name) %>
+        <%= label(f, :name, "Číslo místnosti (jméno)") %>
         <%= text_input(f, :name) %>
         <%= error_tag(f, :name) %>
 
-        <%= label(f, :capacity) %>
+        <%= label(f, :capacity, "Kapacita") %>
         <%= text_input(f, :capacity, type: "number") %>
         <%= error_tag(f, :capacity) %>
 

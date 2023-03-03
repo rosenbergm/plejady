@@ -28,11 +28,11 @@ defmodule PlejadyWeb.Admin.CreateTimeblock do
         </button>
       </div>
       <.form :let={f} for={@changeset} phx-change="validate" phx-submit="save" phx-target={@myself}>
-        <%= label(f, :block_start) %>
+        <%= label(f, :block_start, "Začátek") %>
         <%= text_input(f, :block_start, type: :time, step: 60) %>
         <%= error_tag(f, :block_start) %>
 
-        <%= label(f, :block_end) %>
+        <%= label(f, :block_end, "Konec") %>
         <%= text_input(f, :block_end, type: :time, step: 60) %>
         <%= error_tag(f, :block_end) %>
 

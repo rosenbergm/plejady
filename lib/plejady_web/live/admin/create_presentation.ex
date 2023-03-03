@@ -31,12 +31,12 @@ defmodule PlejadyWeb.Admin.CreatePresentation do
         </button>
       </div>
       <.form :let={f} for={@changeset} phx-change="validate" phx-submit="save" phx-target={@myself}>
-        <%= label(f, :presenter) %>
+        <%= label(f, :presenter, "Jméno přednášejícího") %>
         <%= text_input(f, :presenter) %>
         <%= error_tag(f, :presenter) %>
 
-        <%= label(f, :description) %>
-        <%= text_input(f, :description) %>
+        <%= label(f, :description, "Krátký popisek") %>
+        <%= textarea(f, :description) %>
         <%= error_tag(f, :description) %>
 
         <%= label(
