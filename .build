@@ -13,6 +13,7 @@ Plejady.DataCase.html
 Plejady.Presentation.html
 Plejady.Registration.html
 Plejady.Registry.html
+Plejady.Release.html
 Plejady.Repo.html
 Plejady.Room.html
 Plejady.TestingFixtures.html
@@ -53,8 +54,8 @@ dist/merriweather-latin-ext-300-normal-K6L27CZ5.woff2
 dist/merriweather-vietnamese-300-italic-EHHNZPUO.woff2
 dist/merriweather-vietnamese-300-normal-U376L4Z4.woff2
 dist/remixicon-NKANDIL5.woff2
-dist/search_items-00380F6A.js
-dist/sidebar_items-BA7FEA4E.js
+dist/search_items-5A0F7502.js
+dist/sidebar_items-1462C5B6.js
 index.html
 readme.html
 search.html

@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.29.3">
     <meta name="project" content="Plejády v1.0.0">
 
-    <title>Plejady.DataCase — Plejády v1.0.0</title>
+    <title>Plejady.Release — Plejády v1.0.0</title>
     <link rel="stylesheet" href="dist/html-elixir-MB5C7R66.css" />
 
 
@@ -96,26 +96,20 @@ Plejády
 </button>
 
 
-    <a href="https://github.com/rosenbergm/plejady/blob/main/test/support/data_case.ex#L1" title="View Source" class="icon-action" rel="help">
+    <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady/release.ex#L1" title="View Source" class="icon-action" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
-  <span translate="no">Plejady.DataCase</span> 
+  <span translate="no">Plejady.Release</span> 
   <small class="app-vsn" translate="no">(Plejády v1.0.0)</small>
 
 </h1>
 
 
   <section id="moduledoc">
-<p>This module defines the setup for tests requiring
-access to the application's data layer.</p><p>You may define functions here to be used as helpers in
-your tests.</p><p>Finally, if the test case interacts with the database,
-we enable the SQL sandbox, so changes done to the database
-are reverted at the end of every test. If you are using
-PostgreSQL, you can even run database tests asynchronously
-by setting <code class="inline">use Plejady.DataCase, async: true</code>, although
-this option is not recommended for other databases.</p>
+<p>Used for executing DB release tasks when run in production without Mix
+installed.</p>
   </section>
 
 
@@ -134,21 +128,17 @@ this option is not recommended for other databases.</p>
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#errors_on/1" translate="no">errors_on(changeset)</a>
+        <a href="#migrate/0" translate="no">migrate()</a>
 
       </div>
-
-        <div class="summary-synopsis"><p>A helper that transforms changeset errors into a map of messages.</p></div>
 
     </div>
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#setup_sandbox/1" translate="no">setup_sandbox(tags)</a>
+        <a href="#rollback/2" translate="no">rollback(repo, version)</a>
 
       </div>
-
-        <div class="summary-synopsis"><p>Sets up the sandbox based on the test tags.</p></div>
 
     </div>
 
@@ -166,16 +156,16 @@ this option is not recommended for other databases.</p>
 Functions
     </h1>
     <div class="functions-list">
-<section class="detail" id="errors_on/1">
+<section class="detail" id="migrate/0">
 
   <div class="detail-header">
-    <a href="#errors_on/1" class="detail-link" title="Link to this function">
+    <a href="#migrate/0" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">errors_on(changeset)</h1>
+    <h1 class="signature" translate="no">migrate()</h1>
 
-      <a href="https://github.com/rosenbergm/plejady/blob/main/test/support/data_case.ex#L51" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady/release.ex#L8" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -185,21 +175,19 @@ Functions
 
   <section class="docstring">
 
-<p>A helper that transforms changeset errors into a map of messages.</p><pre><code class="makeup elixir" translate="no"><span class="n">assert</span><span class="w"> </span><span class="p" data-group-id="2401183170-1">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="n">changeset</span><span class="p" data-group-id="2401183170-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Accounts</span><span class="o">.</span><span class="n">create_user</span><span class="p" data-group-id="2401183170-2">(</span><span class="p" data-group-id="2401183170-3">%{</span><span class="ss">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;short&quot;</span><span class="p" data-group-id="2401183170-3">}</span><span class="p" data-group-id="2401183170-2">)</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="s">&quot;password is too short&quot;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">errors_on</span><span class="p" data-group-id="2401183170-4">(</span><span class="n">changeset</span><span class="p" data-group-id="2401183170-4">)</span><span class="o">.</span><span class="n">password</span><span class="w">
-</span><span class="n">assert</span><span class="w"> </span><span class="p" data-group-id="2401183170-5">%{</span><span class="ss">password</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2401183170-6">[</span><span class="s">&quot;password is too short&quot;</span><span class="p" data-group-id="2401183170-6">]</span><span class="p" data-group-id="2401183170-5">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">errors_on</span><span class="p" data-group-id="2401183170-7">(</span><span class="n">changeset</span><span class="p" data-group-id="2401183170-7">)</span></code></pre>
+
   </section>
 </section>
-<section class="detail" id="setup_sandbox/1">
+<section class="detail" id="rollback/2">
 
   <div class="detail-header">
-    <a href="#setup_sandbox/1" class="detail-link" title="Link to this function">
+    <a href="#rollback/2" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">setup_sandbox(tags)</h1>
+    <h1 class="signature" translate="no">rollback(repo, version)</h1>
 
-      <a href="https://github.com/rosenbergm/plejady/blob/main/test/support/data_case.ex#L38" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady/release.ex#L16" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -209,7 +197,7 @@ Functions
 
   <section class="docstring">
 
-<p>Sets up the sandbox based on the test tags.</p>
+
   </section>
 </section>
 
