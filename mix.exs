@@ -13,7 +13,7 @@ defmodule Plejady.MixProject do
       name: "Plejády",
       source_url: "https://github.com/rosenbergm/plejady",
       docs: [
-        main: "Plejády",
+        main: "Plejady",
         extras: ["README.md"],
         output: "docs"
       ]
