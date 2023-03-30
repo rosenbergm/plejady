@@ -14,7 +14,10 @@ defmodule Plejady.MixProject do
       source_url: "https://github.com/rosenbergm/plejady",
       docs: [
         main: "readme",
-        extras: ["README.md": [title: "Overview"]],
+        extras: [
+          "README.md": [title: "Overview"],
+          "USER_MANUAL.md": [title: "User Manual (Czech)"]
+        ],
         output: "docs"
       ]
     ]

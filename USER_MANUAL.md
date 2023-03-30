@@ -1,0 +1,1 @@
+# Uživatelská příručka aplikace Plejády
