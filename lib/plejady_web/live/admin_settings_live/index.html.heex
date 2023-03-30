@@ -1,0 +1,32 @@
+<.app_header title="Další nastavení" current_user={@current_user}>
+  <:actions>
+    <.link
+      navigate={~p"/admin"}
+      class="text-sm font-medium tracking-tight underline hover:no-underline"
+    >
+      Panel administrace
+    </.link>
+  </:actions>
+</.app_header>
+
+<section class="space-y-10 w-screen overflow-y-auto pb-8">
+  <.live_component
+    module={PlejadyWeb.AdminSettingsLive.AdminManagement}
+    current_user={@current_user}
+    id="admin_management"
+  />
+
+  <.live_component module={PlejadyWeb.AdminSettingsLive.TimedRelease} id="timed_release" />
+
+  <article class="px-4 lg:px-16 space-y-6">
+    <h2 class="font-bold text-lg">Další</h2>
+
+    <nav>
+      <.link navigate={~p"/admin/settings/list"}>
+        <.button>
+          Seznam pro vedení školy
+        </.button>
+      </.link>
+    </nav>
+  </article>
+</section>

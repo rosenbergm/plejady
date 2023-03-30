@@ -1,0 +1,191 @@
+<.app_header title="Váš aktuální rozvrh" current_user={@current_user}>
+  <:actions>
+    <.link
+      :if={@current_user.role in [:admin, :lead]}
+      href={~p"/admin"}
+      class="text-sm font-medium tracking-tight underline hover:no-underline"
+    >
+      Panel administrace
+    </.link>
+  </:actions>
+</.app_header>
+
+<h1
+  :if={not @config.is_open and !@config.timed_release}
+  class="text-lg font-bold text-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
+>
+  Přihlašování zatím není otevřené.
+</h1>
+
+<h1
+  :if={@config.timed_release}
+  class="text-lg font-bold text-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
+>
+  Přihlašování se otevře <%= format_datetime(@config.timed_release) %>.
+</h1>
+
+<section :if={@config.is_open} class="px-4 md:px-4 lg:px-16 h-full w-screen">
+  <div class="flow-root h-full pt-2 md:pb-8">
+    <div class="-my-2 -mx-4 overflow-x-auto md:-mx-4 lg:-mx-16 h-full">
+      <div class="inline-block min-w-full align-middle md:px-4 lg:px-16 h-full">
+        <table
+          cellpadding="0"
+          cellspacing="0"
+          style="height:100%;"
+          class="min-w-full divide-y-2 divide-secondary"
+        >
+          <thead>
+            <tr class="divide-x-2 divide-secondary">
+              <th class="legend bg-tertiary/50 p-6 w-20 h-20 space-y-1">
+                <p class="right min-w-[6rem]">
+                  Místnost →
+                </p>
+                <p class="left">
+                  Blok ↓
+                </p>
+              </th>
+              <th
+                :for={room <- @rooms}
+                text-align="center"
+                align="center"
+                class="room align-middle text-center bg-tertiary/50 py-4 px-8"
+              >
+                <div class="w-full flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                  <%= room.name %>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y-2 divide-secondary">
+            <tr :for={timeblock <- @timeblocks} class="divide-x-2 divide-secondary">
+              <td
+                class="timeblock bg-tertiary/50 font-semibold text-lg tracking-tight p-3"
+                align="center"
+              >
+                <div class="new">
+                  <%= Plejady.Timeblock.format_time(timeblock.block_start) %><br /> —<br />
+                  <%= Plejady.Timeblock.format_time(timeblock.block_end) %><br />
+                </div>
+              </td>
+              <%= for room <- @rooms do %>
+                <% presentation =
+                  Enum.find(
+                    @presentations,
+                    nil,
+                    &(&1.room_id == room.id and &1.timeblock_id == timeblock.id)
+                  ) %>
+                <%= if presentation==nil do %>
+                  <td class="disabled bg-tertiary/50 p-3" align="center"></td>
+                <% else %>
+                  <% max_capacity = Map.get(presentation, :capacity) || Map.get(room, :capacity) %>
+                  <td
+                    class={[
+                      "presentation bg-tertiary/50 p-3 cursor-pointer hover:bg-tertiary/90 transition relative",
+                      Map.get(@occupancy, Map.get(presentation, :id), 0) >= max_capacity &&
+                        "disabled",
+                      presentation.id in @signed_up_for && "bg-primary text-secondary"
+                    ]}
+                    align="center"
+                    phx-click={
+                      @current_user.role == :user &&
+                        JS.push("toggle-presentation", value: %{presentation_id: presentation.id})
+                    }
+                  >
+                    <div
+                      class="progress-container"
+                      style={"--progress: #{(Map.get(@occupancy,
+                                        Map.get(presentation, :id), 0)) / max_capacity}"}
+                    >
+                      <progress
+                        value={Map.get(@occupancy, Map.get(presentation, :id), 0)}
+                        max={max_capacity}
+                      >
+                      </progress>
+                    </div>
+                    <div class="content space-y-2">
+                      <em class="text-base font-semibold tracking-tighter not-italic">
+                        <%= Map.get(presentation, :presenter) %>
+                      </em>
+                      <p class="text-sm font-medium tracking-tight min-w-[20ch] max-w-[35ch]">
+                        <%= Map.get(presentation, :description) %>
+                      </p>
+                      <p class="text-sm font-semibold tracking-tight">
+                        Kapacita: <%= max_capacity %>
+                      </p>
+                    </div>
+                  </td>
+                <% end %>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%!-- <section class="table">
+  <table cellpadding="0" cellspacing="0" style="height:100%;">
+    <thead>
+      <tr>
+        <th class="legend">
+          <p class="right">Místnost →</p>
+          <p class="left">Blok →</p>
+        </th>
+
+        <th :for={room <- @rooms} text-align="center" class="room">
+          <%= room.name %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr :for={timeblock <- @timeblocks}>
+        <td class="timeblock">
+          <%= Plejady.Timeblock.format_time(timeblock.block_start) %><br /> —<br />
+          <%= Plejady.Timeblock.format_time(timeblock.block_end) %>
+        </td>
+        <%= for room <- @rooms do %>
+          <% presentation =
+            Enum.find(
+              @presentations,
+              nil,
+              &(&1.room_id == room.id and &1.timeblock_id == timeblock.id)
+            ) %>
+          <%= if presentation==nil do %>
+            <td class="presentation disabled"></td>
+          <% else %>
+            <% max_capacity = Map.get(presentation, :capacity) || Map.get(room, :capacity) %>
+            <td
+              class={"presentation #{if (Map.get(@occupancy, Map.get(presentation, :id), 0)) >= max_capacity do "disabled" end} #{if presentation.id in @signed_up_for do "sel" end}"}
+              phx-click="toggle_presentation"
+              phx-value-presentation={presentation.id}
+            >
+              <div
+                class="progress_container"
+                style={"--progress: #{(Map.get(@occupancy,
+                                        Map.get(presentation, :id), 0)) / max_capacity}"}
+              >
+                <progress
+                  value={Map.get(@occupancy, Map.get(presentation, :id), 0)}
+                  max={max_capacity}
+                >
+                </progress>
+              </div>
+              <div class="content">
+                <em>
+                  <%= Map.get(presentation, :presenter) %>
+                </em>
+                <p>
+                  <%= Map.get(presentation, :description) %>
+                </p>
+                <p>
+                  <%= Map.get(@occupancy, Map.get(presentation, :id)) %>/<%= max_capacity %>
+                </p>
+              </div>
+            </td>
+          <% end %>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</section> --%>

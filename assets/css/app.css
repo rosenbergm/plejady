@@ -1,0 +1,72 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* This file is for your main application CSS */
+
+.timeblock {
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed !important;
+  opacity: 0.3;
+}
+
+progress {
+  opacity: 0;
+}
+
+.progress-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: inline-block;
+  background: rgba(250, 237, 204, 0.4);
+  height: 6px;
+  width: 100%;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.progress-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: calc(var(--progress) * 100%);
+  background: #4F3366;
+}
+
+.pagebreak tr {
+  height: 3rem;
+}
+
+@media print {
+  .pagebreak {
+    page-break-after: always;
+  }
+
+  * {
+    color: #000 !important;
+  }
+
+  .noprint,
+  .app-header {
+    display: none;
+  }
+}
