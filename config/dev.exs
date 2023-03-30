@@ -68,4 +68,6 @@ config :phoenix, :plug_init_mode, :runtime
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
 
-import_config "dev.secret.exs"
+if is_nil(System.get_env("IS_CI")) do
+  import_config "dev.secret.exs"
+end
