@@ -34,7 +34,7 @@ To set up deployment to fly.io, you need to:
 2. Authenticate with `flyctl auth login`.
 3. Launch the app with `flyctl launch`. This will create a new app on fly.io.
     - The CLI will ask you if you want to create a database. Answer `y` (yes).
-    - **IMPORTANT:* *When the CLI asks you if you want to deploy the app, answer `n` (no).
+    - **IMPORTANT:** When the CLI asks you if you want to deploy the app, answer `n` (no).
 4. Set the needed environment variables with `flyctl env set <key>=<value>`. See [this section](#important-environment-variables-for-hosting-on-flyio) for a list of environment variables which need to be set.
 5. Deploy the app with `flyctl deploy`.
 6. Go to the fly.io dashboard and click on the "Scale" menu item. The recomended settings are:
