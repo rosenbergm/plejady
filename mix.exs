@@ -65,7 +65,7 @@ defmodule Plejady.MixProject do
       {:ex_cldr_dates_times, "~> 2.13"},
       {:tz, "~> 0.24.0"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.29", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.29", only: [:dev, :test], runtime: false}
     ]
   end
 
