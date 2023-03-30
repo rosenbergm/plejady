@@ -11,6 +11,7 @@ jobs:
   publish-docs:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
+    environment: docs
 
     name: Run on OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
     strategy:
