@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.3">
+    <meta name="project" content="Plejády v1.0.0">
+
+    <title>API Reference — Plejády v1.0.0</title>
+    <link rel="stylesheet" href="dist/html-elixir-MB5C7R66.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-XRYTXUVD.js"></script>
+    <script src="dist/sidebar_items-9908CB9B.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-EHGDP2LQ.js"></script>
+
+
+  </head>
+  <body data-type="extras" class="page-extra">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="Plejády.html" class="sidebar-projectName" translate="no">
+Plejády
+      </a>
+      <strong class="sidebar-projectVersion" translate="no">
+        v1.0.0
+      </strong>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+
+  <span>API Reference <small class="app-vsn">Plejády v1.0.0</small></span>
+</h1>
+
+
+  <section class="details-list">
+    <h2 id="modules" class="section-heading">
+  <a href="#modules" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">modules</p>
+  </a>
+  Modules
+</h2>
+
+    <div class="summary">
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.html" translate="no">Plejady</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Plejady keeps the contexts that define your domain
+and business logic.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Accounts.html" translate="no">Plejady.Accounts</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides logic for managing accounts. This includes users, guests, admins, etc.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Accounts.Guest.html" translate="no">Plejady.Accounts.Guest</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides logic for guest users (users whose email is not a student's email).</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Accounts.SuggestedAdmin.html" translate="no">Plejady.Accounts.SuggestedAdmin</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides logic for suggested admins (users that will automatically become admins).</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Accounts.Token.html" translate="no">Plejady.Accounts.Token</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Utilities for managing user tokens.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Accounts.User.html" translate="no">Plejady.Accounts.User</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides logic for managing users.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Accounts.User.Promotion.html" translate="no">Plejady.Accounts.User.Promotion</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides logic for promoting users.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Accounts.UserToken.html" translate="no">Plejady.Accounts.UserToken</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides logic for managing user tokens.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.CacheInitiator.html" translate="no">Plejady.CacheInitiator</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>This module is responsible for initializing the cache with the data from the database.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Config.html" translate="no">Plejady.Config</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides the model and logic for the application config.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Config.Schema.html" translate="no">Plejady.Config.Schema</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Model and helpers for the <a href="Plejady.Config.html"><code class="inline">Plejady.Config</code></a> schema.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.DataCase.html" translate="no">Plejady.DataCase</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>This module defines the setup for tests requiring
+access to the application's data layer.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Presentation.html" translate="no">Plejady.Presentation</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides the model and logic for presentations.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Registration.html" translate="no">Plejady.Registration</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides the model and logic for registrations.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Registry.html" translate="no">Plejady.Registry</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>This module is responsible for managing the registry of presentations and their occupancy. It provides a super fast read-write cache for the real-time component of the app with fire-and-forget requests to the database for permanent storage.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Repo.html" translate="no">Plejady.Repo</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The Ecto repository for this application.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Room.html" translate="no">Plejady.Room</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides the model and logic for rooms.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.TestingFixtures.html" translate="no">Plejady.TestingFixtures</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>This module defines test helpers for creating
+entities via the <code class="inline">Plejady.Testing</code> context.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plejady.Timeblock.html" translate="no">Plejady.Timeblock</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides the model and logic for timeblocks.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="PlejadyWeb.html" translate="no">PlejadyWeb</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The entrypoint for defining your web interface, such
+as controllers, components, channels, and so on.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="PlejadyWeb.AuthController.html" translate="no">PlejadyWeb.AuthController</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Controller for handling authentication. Uses Ueberauth to simplify the code in the app itself.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="PlejadyWeb.ConnCase.html" translate="no">PlejadyWeb.ConnCase</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>This module defines the test case to be used by
+tests that require setting up a connection.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="PlejadyWeb.CoreComponents.html" translate="no">PlejadyWeb.CoreComponents</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides core UI components.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="PlejadyWeb.Endpoint.html" translate="no">PlejadyWeb.Endpoint</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The endpoint for the PlejadyWeb application. Encapsulates all socket and plug configuration.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="PlejadyWeb.Header.html" translate="no">PlejadyWeb.Header</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Component library for the app header.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="PlejadyWeb.UserAuth.html" translate="no">PlejadyWeb.UserAuth</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides LiveView hooks and helper functions for user authentication.</p></div>
+
+</div>
+
+    </div>
+  </section>
+
+
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+  </div>
+  <div class="bottom-actions-item">
+
+      <a href="readme.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+README
+        </span>
+      </a>
+
+  </div>
+</div>
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+              <a href="Plejády.epub" title="ePub version">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.3) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

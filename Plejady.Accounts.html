@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.3">
+    <meta name="project" content="Plejády v1.0.0">
+
+    <title>Plejady.Accounts — Plejády v1.0.0</title>
+    <link rel="stylesheet" href="dist/html-elixir-MB5C7R66.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-XRYTXUVD.js"></script>
+    <script src="dist/sidebar_items-9908CB9B.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-EHGDP2LQ.js"></script>
+
+
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="Plejády.html" class="sidebar-projectName" translate="no">
+Plejády
+      </a>
+      <strong class="sidebar-projectVersion" translate="no">
+        v1.0.0
+      </strong>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady/accounts.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">Plejady.Accounts</span> 
+  <small class="app-vsn" translate="no">(Plejády v1.0.0)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Provides logic for managing accounts. This includes users, guests, admins, etc.</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_guest/1" translate="no">create_guest(params)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Creates a new guest.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#delete_suggested_admin/1" translate="no">delete_suggested_admin(id)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Deletes a suggested admin by its id.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#first_user?/0" translate="no">first_user?()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Checks if there are any other users registered. If not, this function returns <code class="inline">true</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_admins/0" translate="no">get_admins()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Fetches all admins.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_free_guest_places/0" translate="no">get_free_guest_places()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Fetches a number of free guest places.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_user_by_email/1" translate="no">get_user_by_email(email)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Fetches a user by email.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#strip_off_admin/1" translate="no">strip_off_admin(id)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Strips off admin rights from the user with the given id.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#transfer_admin/2" translate="no">transfer_admin(me, to_email)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Transfers the admin lead role to another user (specified by their email).</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="create_guest/1">
+
+  <div class="detail-header">
+    <a href="#create_guest/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">create_guest(params)</h1>
+
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady/accounts.ex#L15" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Creates a new guest.</p><blockquote><p>This is a database action.</p></blockquote>
+  </section>
+</section>
+<section class="detail" id="delete_suggested_admin/1">
+
+  <div class="detail-header">
+    <a href="#delete_suggested_admin/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">delete_suggested_admin(id)</h1>
+
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady/accounts.ex#L59" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Deletes a suggested admin by its id.</p><blockquote><p>This is a database action.</p></blockquote>
+  </section>
+</section>
+<section class="detail" id="first_user?/0">
+
+  <div class="detail-header">
+    <a href="#first_user?/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">first_user?()</h1>
+
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady/accounts.ex#L70" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Checks if there are any other users registered. If not, this function returns <code class="inline">true</code>.</p>
+  </section>
+</section>
+<section class="detail" id="get_admins/0">
+
+  <div class="detail-header">
+    <a href="#get_admins/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">get_admins()</h1>
+
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady/accounts.ex#L40" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Fetches all admins.</p>
+  </section>
+</section>
+<section class="detail" id="get_free_guest_places/0">
+
+  <div class="detail-header">
+    <a href="#get_free_guest_places/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">get_free_guest_places()</h1>
+
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady/accounts.ex#L24" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Fetches a number of free guest places.</p>
+  </section>
+</section>
+<section class="detail" id="get_user_by_email/1">
+
+  <div class="detail-header">
+    <a href="#get_user_by_email/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">get_user_by_email(email)</h1>
+
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady/accounts.ex#L33" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Fetches a user by email.</p>
+  </section>
+</section>
+<section class="detail" id="strip_off_admin/1">
+
+  <div class="detail-header">
+    <a href="#strip_off_admin/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">strip_off_admin(id)</h1>
+
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady/accounts.ex#L49" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Strips off admin rights from the user with the given id.</p><blockquote><p>This is a database action.</p></blockquote>
+  </section>
+</section>
+<section class="detail" id="transfer_admin/2">
+
+  <div class="detail-header">
+    <a href="#transfer_admin/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">transfer_admin(me, to_email)</h1>
+
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady/accounts.ex#L79" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Transfers the admin lead role to another user (specified by their email).</p><blockquote><p>This is a database action.</p></blockquote>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+              <a href="Plejády.epub" title="ePub version">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.3) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

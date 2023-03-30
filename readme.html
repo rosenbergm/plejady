@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.3">
+    <meta name="project" content="Plejády v1.0.0">
+
+    <title>README — Plejády v1.0.0</title>
+    <link rel="stylesheet" href="dist/html-elixir-MB5C7R66.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-XRYTXUVD.js"></script>
+    <script src="dist/sidebar_items-9908CB9B.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-EHGDP2LQ.js"></script>
+
+
+  </head>
+  <body data-type="extras" class="page-extra">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="Plejády.html" class="sidebar-projectName" translate="no">
+Plejády
+      </a>
+      <strong class="sidebar-projectVersion" translate="no">
+        v1.0.0
+      </strong>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/rosenbergm/plejady/blob/main/README.md#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+
+  <span>README</span>
+</h1>
+
+<p> Plejady</p><p>An event management system for a yearly school event.</p><h2 id="development" class="section-heading">
+  <a href="#development" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">development</p>
+  </a>
+  Development
+</h2>
+<ol><li><a href="https://elixir-lang.org/install.html">Install</a> Elixir</li><li>Follow <a href="#configuring-the-application">these instructions</a> for configuring the app.</li><li>Run <a href="https://hexdocs.pm/mix/Mix.Tasks.Deps.Get.html"><code class="inline">mix deps.get</code></a> to install dependencies</li><li>Run <a href="https://hexdocs.pm/phoenix/1.7.1/Mix.Tasks.Phx.Server.html"><code class="inline">mix phx.server</code></a> to start a local server!</li></ol><blockquote><p>⚠️ You need to have a PostgreSQL database running on your local machine.</p></blockquote><h2 id="configuring-the-application" class="section-heading">
+  <a href="#configuring-the-application" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">configuring-the-application</p>
+  </a>
+  Configuring the application
+</h2>
+<p>Before installing dependencies, you need to properly configure the application. This is done by creating a <code class="inline">dev.secret.exs</code> file in the <code class="inline">config</code> directory of the project. </p><ol><li>Copy the <code class="inline">dev.secret.exs.example</code> file to <code class="inline">config/dev.secret.exs</code></li><li>Change the values in the file to match your local setup.<ul><li><code class="inline">client_id</code> and <code class="inline">client_secret</code> are the OAuth credentials for the Google API. You can get them <a href="https://console.developers.google.com/apis/credentials">here</a>. Make sure you select the right project.</li><li>There are also database credentials. You need to change them to match your local setup. If you're using Docker to host your local database, you can use the default values.</li></ul></li></ol><h2 id="deployment" class="section-heading">
+  <a href="#deployment" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">deployment</p>
+  </a>
+  Deployment
+</h2>
+<p>You can either deploy to fly.io (easy-ish) or self-host the entire project. If you don't have a server, then go for fly.io or contact Martin Rosenberg (nitram.rosenberg@gmail.com), he will lend you one.</p><h3 id="important-environment-variables" class="section-heading">
+  <a href="#important-environment-variables" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">important-environment-variables</p>
+  </a>
+  Important environment variables
+</h3>
+<p>When starting the Docker container (<strong>NOT</strong> building it), you need to set the following environment variables:</p><ul><li><code class="inline">DATABASE_URL</code> - The URL to the PostgreSQL database. If you're using fly.io, this is automatically set.</li><li><code class="inline">GOOGLE_CLIENT_ID</code> - The OAuth client ID for the Google API.</li><li><code class="inline">GOOGLE_CLIENT_SECRET</code> - The OAuth client secret for the Google API.</li><li><code class="inline">SECRET_KEY_BASE</code> - A secret key used for signing cookies. You can generate one with <a href="https://hexdocs.pm/phoenix/1.7.1/Mix.Tasks.Phx.Gen.Secret.html"><code class="inline">mix phx.gen.secret</code></a>.</li><li><code class="inline">PHX_HOST</code> - The host of the application. In this case, it will be something like <code class="inline">plejady.alej.cz</code>. If you're using fly.io, this is automatically set.</li></ul><h3 id="docker" class="section-heading">
+  <a href="#docker" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">docker</p>
+  </a>
+  Docker
+</h3>
+<p>To deploy with Docker, use the provided <a href="docker-compose.yml">docker-compose.yml</a> to run the app with a separate PostgreSQL database.</p>
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="api-reference.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+API Reference
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+  </div>
+</div>
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+              <a href="Plejády.epub" title="ePub version">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.3) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
