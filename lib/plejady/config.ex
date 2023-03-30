@@ -14,17 +14,25 @@ defmodule Plejady.Config do
 
   @impl true
   def handle_call(:get, _from, config) do
-    formatted_config = config
-    # TODO: WTF is this?
-    # |> Map.update(:timed_release, nil, fn e ->
-    #   if is_nil(e) do
-    #     nil
-    #   else
-    #     DateTime.shift_zone!(e, "Europe/Prague", Tz.TimeZoneDatabase)
-    #   end
-    # end)
+    formatted_config =
+      config
+      |> Map.update(:timed_release, nil, &to_czech_timezone/1)
 
     {:reply, formatted_config, config}
+  end
+
+  defp to_czech_timezone(nil), do: nil
+
+  defp to_czech_timezone(datetime) do
+    DateTime.shift_zone!(datetime, "Europe/Prague", Tz.TimeZoneDatabase)
+  end
+
+  def from_czech_timezone(nil), do: nil
+
+  def from_czech_timezone(form_date) do
+    NaiveDateTime.from_iso8601!(form_date <> ":00.000Z")
+    |> DateTime.from_naive!("Europe/Prague", Tz.TimeZoneDatabase)
+    |> DateTime.shift_zone!("Etc/UTC")
   end
 
   @impl true
@@ -60,6 +68,7 @@ defmodule Plejady.Config do
     use Ecto.Schema
     import Ecto.Changeset
 
+    alias Plejady.Config
     alias Plejady.Config.Schema
 
     embedded_schema do
@@ -83,8 +92,8 @@ defmodule Plejady.Config do
       %Schema{
         is_open: false,
         # TODO: Figure this out
-        # timed_release: nil,
-        timed_release: DateTime.utc_now(),
+        timed_release: nil,
+        # timed_release: DateTime.utc_now(),
         guest_capacity: 30
       }
     end
@@ -111,18 +120,12 @@ defmodule Plejady.Config do
     Takes the parameters from the form and returns a Config struct.
     """
     def from_changeset(params) do
-      params
-      |> Map.update("timed_release", nil, fn e ->
-        if e == "" do
-          nil
-        else
-          NaiveDateTime.from_iso8601!(e <> ":00.000Z")
-          |> DateTime.from_naive!("Europe/Prague", Tz.TimeZoneDatabase)
-          |> DateTime.shift_zone!("Etc/UTC")
-          |> DateTime.to_string()
-        end
-      end)
-      |> changeset()
+      params =
+        params
+        |> Map.update("timed_release", nil, &Config.from_czech_timezone/1)
+
+      %Schema{}
+      |> changeset(params)
       |> change(is_open: false)
       |> apply_changes()
     end
