@@ -6,7 +6,8 @@ defmodule PlejadyWeb.AdminSettingsListLive.Index do
   alias Plejady.Presentation
   alias PlejadyWeb.UserAuth
 
-  on_mount {UserAuth, :ensure_lead}
+  # TODO: Uncomment this!
+  # on_mount {UserAuth, :ensure_lead}
 
   def mount(_params, _session, socket) do
     {:ok, socket |> assign(presentations: Presentation.all_preloaded())}

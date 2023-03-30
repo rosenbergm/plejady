@@ -37,20 +37,35 @@ defmodule PlejadyWeb.AuthController do
     |> redirect(to: ~p"/")
   end
 
+  # TODO: Uncomment this!
+  # def callback(
+  #       %{
+  #         assigns: %{
+  #           ueberauth_auth: %Auth{info: %Info{urls: %{website: "student.alej.cz"}}} = auth
+  #         }
+  #       } = conn,
+  #       _params
+  #     ) do
   def callback(
         %{
           assigns: %{
-            ueberauth_auth: %Auth{info: %Info{urls: %{website: "student.alej.cz"}}} = auth
+            ueberauth_auth: %Auth{info: %Info{urls: %{website: website}}} = auth
           }
         } = conn,
         _params
       ) do
-    user = UserAuth.get_user_by_auth(auth)
+    if website == "student.alej.cz" or website == "alej.cz" do
+      user = UserAuth.get_user_by_auth(auth)
 
-    conn
-    |> UserAuth.log_in_user(user, %{})
-    |> put_flash(:info, "Přihlášení bylo úspěšné!")
-    |> redirect(to: ~p"/app")
+      conn
+      |> UserAuth.log_in_user(user, %{})
+      |> put_flash(:info, "Přihlášení bylo úspěšné!")
+      |> redirect(to: ~p"/app")
+    else
+      conn
+      |> put_flash(:error, "Musíte se přihlásit školním e-mailem.")
+      |> redirect(to: ~p"/")
+    end
   end
 
   def callback(%{assigns: %{ueberauth_auth: _auth}} = conn, _params) do

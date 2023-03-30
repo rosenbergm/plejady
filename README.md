@@ -1,4 +1,4 @@
- Plejady
+# Plejady
 
 An event management system for a yearly school event.
 

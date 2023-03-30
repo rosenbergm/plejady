@@ -10,7 +10,7 @@ defmodule Plejady.Accounts.SuggestedAdmin do
   alias Plejady.Repo
   alias Plejady.Accounts.SuggestedAdmin
 
-  @mail_regex ~r/^[A-Za-z0-9._%+-]+@student.alej.cz$/
+  @mail_regex ~r/^[A-Za-z0-9._%+-]+@(student.)?alej.cz$/
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

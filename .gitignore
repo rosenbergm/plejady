@@ -38,3 +38,5 @@ npm-debug.log
 /.elixir_ls/
 /config/*.secret.exs
 
+fly.toml
+

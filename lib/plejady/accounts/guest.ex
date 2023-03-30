@@ -26,12 +26,14 @@ defmodule Plejady.Accounts.Guest do
     |> validate_if_not_student(:email)
   end
 
+  @mail_regex ~r/^[A-Za-z0-9._%+-]+@(student.)?alej.cz$/
+
   @doc """
   Validates if the given field is not a student's email.
   """
   def validate_if_not_student(changeset, field) when is_atom(field) do
     validate_change(changeset, field, fn field, value ->
-      if String.contains?(value, "@student.alej.cz") do
+      if String.match?(value, @mail_regex) do
         [{field, "E-mail nesmí být školní!"}]
       else
         []

@@ -54,7 +54,7 @@ defmodule Plejady.Accounts.User do
     """
     use Ecto.Schema
 
-    @mail_regex ~r/^[A-Za-z0-9._%+-]+@student.alej.cz$/
+    @mail_regex ~r/^[A-Za-z0-9._%+-]+@(student.)?alej.cz$/
 
     embedded_schema do
       field :email, :string

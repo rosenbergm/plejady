@@ -71,6 +71,7 @@ defmodule PlejadyWeb.AppLive do
     #   datetime |> DateTime.shift_zone!("Europe/Prague", Tz.TimeZoneDatabase),
     #   format: :long
     # )
-    "kekel"
+    # TODO: Finish this
+    "v dohledné době"
   end
 end
