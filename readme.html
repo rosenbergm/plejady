@@ -13,7 +13,7 @@
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-XRYTXUVD.js"></script>
-    <script src="dist/sidebar_items-1462C5B6.js"></script>
+    <script src="dist/sidebar_items-97BF0383.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -123,19 +123,19 @@ Plejády
   </a>
   Deployment
 </h2>
-<p>You can either deploy to fly.io (easy-ish) or self-host the entire project. If you don't have a server, then go for fly.io or contact Martin Rosenberg (nitram.rosenberg@gmail.com), he will lend you one.</p><h3 id="important-environment-variables" class="section-heading">
-  <a href="#important-environment-variables" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
-  <p class="sr-only">important-environment-variables</p>
+<p>You can either deploy to fly.io (easy-ish) or self-host the entire project. If you don't have a server, then go for fly.io or contact Martin Rosenberg (nitram.rosenberg@gmail.com), he will lend you one.</p><h3 id="fly-io" class="section-heading">
+  <a href="#fly-io" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">fly-io</p>
   </a>
-  Important environment variables
+  Fly.io
 </h3>
-<p>When starting the Docker container (<strong>NOT</strong> building it), you need to set the following environment variables:</p><ul><li><code class="inline">DATABASE_URL</code> - The URL to the PostgreSQL database. If you're using fly.io, this is automatically set.</li><li><code class="inline">GOOGLE_CLIENT_ID</code> - The OAuth client ID for the Google API.</li><li><code class="inline">GOOGLE_CLIENT_SECRET</code> - The OAuth client secret for the Google API.</li><li><code class="inline">SECRET_KEY_BASE</code> - A secret key used for signing cookies. You can generate one with <a href="https://hexdocs.pm/phoenix/1.7.1/Mix.Tasks.Phx.Gen.Secret.html"><code class="inline">mix phx.gen.secret</code></a>.</li><li><code class="inline">PHX_HOST</code> - The host of the application. In this case, it will be something like <code class="inline">plejady.alej.cz</code>. If you're using fly.io, this is automatically set.</li></ul><h3 id="docker" class="section-heading">
+<p>Fly.io is a hosting service which makes it easy to deploy Elixir applications. It takes care of the entire deployment process, so you don't have to worry about it. The disadvantage is that it's not free — well, they do have a free tier, but it's not really suitable for this project.</p><p>To set up deployment to fly.io, you need to:</p><ol><li><a href="https://fly.io/docs/getting-started/installing-flyctl/">Install</a> the <code class="inline">flyctl</code> CLI tool.</li><li>Authenticate with <code class="inline">flyctl auth login</code>.</li><li>Launch the app with <code class="inline">flyctl launch</code>. This will create a new app on fly.io.<ul><li>The CLI will ask you if you want to create a database. Answer <code class="inline">y</code> (yes).</li><li><em>*IMPORTANT:</em> *When the CLI asks you if you want to deploy the app, answer <code class="inline">n</code> (no).</li></ul></li><li>Set the needed environment variables with <code class="inline">flyctl env set &lt;key&gt;=&lt;value&gt;</code>. See <a href="#important-environment-variables-for-hosting-on-flyio">this section</a> for a list of environment variables which need to be set.</li><li>Deploy the app with <code class="inline">flyctl deploy</code>.</li><li>Go to the fly.io dashboard and click on the &quot;Scale&quot; menu item. The recomended settings are:<ul><li><strong>TBD</strong></li></ul></li></ol><p>To set up a custom domain, check out the following steps:</p><blockquote><p>In this section, we will assume that you want to use the domain <code class="inline">plejady.alej.cz</code> for the app.</p></blockquote><ol><li>Run <code class="inline">fly ips list</code> to get a list of available IPs.<ul><li>This should return a list of 2 IPs – one for IPv4 and one for IPv6.</li></ul></li><li>Write an email to Mr. Horálek (or whoever is in charge of the domain) and ask him to add <strong>two</strong> DNS records for the domain.<ul><li><strong>A record</strong> for the IPv4 address.</li><li><strong>AAAA record</strong> for the IPv6 address.</li></ul></li><li>Run <code class="inline">fly certs create plejady.alej.cz</code> to create a certificate for the domain.<ul><li>This can take some time, so be patient. You can check on the progress using <code class="inline">fly certs show plejady.alej.cz</code>.</li></ul></li></ol><h4>Important environment variables for hosting on fly.io</h4><p>To set the environment variables, use the <code class="inline">flyctl env set &lt;key&gt;=&lt;value&gt;</code> command. The following variables need to be set:</p><ul><li><code class="inline">GOOGLE_CLIENT_ID</code> - The OAuth client ID for the Google API.</li><li><code class="inline">GOOGLE_CLIENT_SECRET</code> - The OAuth client secret for the Google API.</li></ul><h3 id="docker" class="section-heading">
   <a href="#docker" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
   <p class="sr-only">docker</p>
   </a>
   Docker
 </h3>
-<p>To deploy with Docker, use the provided <a href="docker-compose.yml">docker-compose.yml</a> to run the app with a separate PostgreSQL database.</p>
+<p>To deploy with Docker, use the provided <a href="docker-compose.yml">docker-compose.yml</a> to run the app with a separate PostgreSQL database.</p><p>See <a href="#important-environment-variables-for-self-hosting">this section</a> for a list of environment variables which need to be set.</p><h4>Important environment variables for self-hosting</h4><p>When starting the Docker container (<strong>NOT</strong> building it), you need to set the following environment variables:</p><ul><li><code class="inline">DATABASE_URL</code> - The URL to the PostgreSQL database. If you're using fly.io, this is automatically set.</li><li><code class="inline">GOOGLE_CLIENT_ID</code> - The OAuth client ID for the Google API.</li><li><code class="inline">GOOGLE_CLIENT_SECRET</code> - The OAuth client secret for the Google API.</li><li><code class="inline">SECRET_KEY_BASE</code> - A secret key used for signing cookies. You can generate one with <a href="https://hexdocs.pm/phoenix/1.7.1/Mix.Tasks.Phx.Gen.Secret.html"><code class="inline">mix phx.gen.secret</code></a>.</li><li><code class="inline">PHX_HOST</code> - The host of the application. In this case, it will be something like <code class="inline">plejady.alej.cz</code>. If you're using fly.io, this is automatically set.</li></ul>
 <div class="bottom-actions">
   <div class="bottom-actions-item">
 
@@ -150,6 +150,15 @@ API Reference
 
   </div>
   <div class="bottom-actions-item">
+
+      <a href="user_manual.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+User Manual (Czech)
+        </span>
+      </a>
 
   </div>
 </div>
