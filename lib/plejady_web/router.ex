@@ -44,13 +44,6 @@ defmodule PlejadyWeb.Router do
       live "/app", AppLive
     end
 
-    live "/test", TestLive.Index, :index
-    live "/test/new", TestLive.Index, :new
-    live "/test/:id/edit", TestLive.Index, :edit
-
-    live "/test/:id", TestLive.Show, :show
-    live "/test/:id/show/edit", TestLive.Show, :edit
-
     # Admin
     live_session :admin,
       on_mount: [

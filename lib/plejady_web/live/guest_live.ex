@@ -22,6 +22,7 @@ defmodule PlejadyWeb.GuestLive do
   def render(assigns) do
     ~H"""
     <main class="w-full h-full flex flex-col items-center justify-center gap-3 text-center space-y-6 px-6 mx-auto max-w-lg">
+      <.flash_group flash={@flash} />
       <img src="/images/logo.svg" />
 
       <article class="space-y-4">

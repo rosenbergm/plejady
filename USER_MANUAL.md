@@ -19,4 +19,18 @@ Na Plejády nemohou sice chodit hosté z řad široké veřejnosti, ale vstup ab
 
 ---
 
-Pokud je uživatel student, může se svým školním e-mailem přihlásit pomocí tlačítka *přihlásit pomocí školního účtu*. Tito uživatelé se tak dostanou do aplikace a při spuštění přihlášení si mohou vybrat přednášky. Systém vybírání přednášek funguje na jednoduchém principu – kdo dřív přijde, ten dřív mele. Detaily tohoto principu jsou popsány níže.
+Pokud je uživatel student, může se svým školním e-mailem přihlásit pomocí tlačítka *Přihlásit pomocí školního účtu*. Tito uživatelé se tak dostanou do aplikace a při spuštění přihlášení si mohou vybrat přednášky. Systém vybírání přednášek funguje na jednoduchém principu – kdo dřív přijde, ten dřív mele. Detaily tohoto principu jsou popsány níže.
+
+## Po přihlášení
+
+![Hlavní stránka po přihlášení](docs_images/main.png)
+
+Po úspěšném příhlášení se dostanete na stránku podobnou této. Vzhledem k tomu, že přihlašování zatím nejspíš není otevřené, nezobrazí se Vám tabulka s přednáškami. V horní části obrazovky na odhlášení a, pokud jste administrátor, na tlačítko na administraci systému.
+
+Pokud již administrátoři nastavili čas spuštění přihlašování, zobrazí se Vám na hlavní stránce, abyste věděli, kdy se na stránku dostavit a vybrat si své přihlášky.
+
+---
+
+TODO: Doplnit obrázek
+
+Poté co se přihlašování spustí, zobrazí se Vám tabulka s přednáškami. U každé přednášky uvidíte detaily o ní a také to, jak moc je zaplněná. Kapacita přednášky se mění v reálném čase, tudíž v každý okamžik vidíte, kolik je volných míst. Po zaplnění všech míst se přednáška zatmaví a už na ni není možné kliknout.
