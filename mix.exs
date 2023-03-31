@@ -86,7 +86,12 @@ defmodule Plejady.MixProject do
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["tailwind default", "esbuild default"],
-      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
+      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"],
+      docs: ["docs", &copy_images/1]
     ]
+  end
+
+  def copy_images(_) do
+    File.cp_r("docs_images/", "docs/docs_images")
   end
 end
