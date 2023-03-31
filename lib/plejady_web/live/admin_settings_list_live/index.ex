@@ -4,7 +4,6 @@ defmodule PlejadyWeb.AdminSettingsListLive.Index do
   use PlejadyWeb, :live_view
 
   alias Plejady.Presentation
-  alias PlejadyWeb.UserAuth
 
   # TODO: Uncomment this!
   # on_mount {UserAuth, :ensure_lead}

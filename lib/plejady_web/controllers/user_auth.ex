@@ -73,9 +73,6 @@ defmodule PlejadyWeb.UserAuth do
     |> maybe_write_remember_me_cookie(token, params)
   end
 
-  @doc """
-  Renews the socket (clears all session data)
-  """
   defp renew_session(conn) do
     conn
     |> configure_session(renew: true)

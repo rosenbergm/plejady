@@ -3,7 +3,6 @@ defmodule PlejadyWeb.AdminSettingsLive.Index do
 
   use PlejadyWeb, :live_view
 
-  alias PlejadyWeb.UserAuth
   alias Plejady.Accounts
 
   # TODO: Uncomment this!
