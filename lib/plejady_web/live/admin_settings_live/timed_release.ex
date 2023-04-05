@@ -3,6 +3,7 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
 
   use PlejadyWeb, :live_component
 
+  alias Plejady.CacheInitiator
   alias Plejady.Config
   alias Plejady.Config.Schema
 
@@ -111,6 +112,8 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
   end
 
   def handle_event("open_now", _params, socket) do
+    CacheInitiator.initiate()
+
     %Schema{
       is_open: true,
       timed_release: nil

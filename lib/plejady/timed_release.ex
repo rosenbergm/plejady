@@ -4,7 +4,7 @@ defmodule Plejady.TimedRelease do
   """
   use GenServer
 
-  alias Plejady.Config
+  alias Plejady.{CacheInitiator, Config}
   alias Plejady.Config.Schema
 
   @impl true
@@ -22,6 +22,8 @@ defmodule Plejady.TimedRelease do
   @impl true
   def handle_info(:tick, time) do
     if DateTime.compare(DateTime.utc_now(), time) == :gt do
+      CacheInitiator.initiate()
+
       %Schema{
         is_open: true,
         timed_release: nil

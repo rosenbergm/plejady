@@ -12,6 +12,16 @@ defmodule Plejady.CacheInitiator do
 
   @impl true
   def init(_) do
+    initiate()
+
+    :ignore
+  end
+
+  def start_link(_) do
+    GenServer.start_link(__MODULE__, :ok)
+  end
+
+  def initiate do
     Repo.all(Presentation)
     |> Enum.reduce(%{}, fn %{id: presentation_id}, acc ->
       Map.put(acc, presentation_id, [])
@@ -36,11 +46,5 @@ defmodule Plejady.CacheInitiator do
       :registry,
       Registry.new(presentations, rooms, timeblocks)
     )
-
-    :ignore
-  end
-
-  def start_link(_) do
-    GenServer.start_link(__MODULE__, :ok)
   end
 end
