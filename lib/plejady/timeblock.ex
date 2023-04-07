@@ -46,12 +46,8 @@ defmodule Plejady.Timeblock do
     |> Repo.update()
   end
 
-  def format_time(%Time{hour: hour, minute: minute}) do
-    if minute == 0 do
-      "#{hour}:00"
-    else
-      "#{hour}:#{minute}"
-    end
+  def format_time(%Time{} = time) do
+    Plejady.Cldr.DateTime.to_string!(time, format: "hh:mm")
   end
 
   @doc """

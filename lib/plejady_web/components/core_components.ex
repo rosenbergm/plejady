@@ -145,8 +145,9 @@ defmodule PlejadyWeb.CoreComponents do
     <div
       :if={msg = render_slot(@inner_block) || Phoenix.Flash.get(@flash, @kind)}
       id={@id}
-      phx-mounted={@autoshow && show("##{@id}")}
+      phx-mounted={@autoshow && show_and_hide("##{@id}", @id)}
       phx-click={JS.push("lv:clear-flash", value: %{key: @kind}) |> hide("##{@id}")}
+      data-close={JS.push("lv:clear-flash", value: %{key: @kind}) |> hide("##{@id}")}
       role="alert"
       class={[
         "fixed hidden top-2 right-2 w-80 sm:w-96 z-50 rounded-lg p-3 shadow-md shadow-zinc-900/5 ring-1",
@@ -171,6 +172,11 @@ defmodule PlejadyWeb.CoreComponents do
       </button>
     </div>
     """
+  end
+
+  def show_and_hide(js \\ %JS{}, selector, id) do
+    JS.dispatch(js, "flash:autohide", detail: %{id: id})
+    |> show(selector)
   end
 
   @doc """

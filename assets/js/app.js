@@ -31,6 +31,15 @@ Hooks.LocalTime = {
   }
 }
 
+window.addEventListener("flash:autohide", event => {
+  setTimeout(() => {
+    const flash = document.getElementById(event.detail.id)
+    if (flash) {
+      liveSocket.execJS(flash, flash.getAttribute("data-close"))
+    }
+  }, 5000);
+})
+
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, { params: { _csrf_token: csrfToken }, hooks: Hooks })
 
