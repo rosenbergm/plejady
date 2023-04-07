@@ -13,7 +13,7 @@
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-XRYTXUVD.js"></script>
-    <script src="dist/sidebar_items-51D070C8.js"></script>
+    <script src="dist/sidebar_items-3176A728.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -263,6 +263,14 @@ customize the generated components in this module.</p><p>Icons are provided by <
 
     <div class="summary-row">
       <div class="summary-signature">
+        <a href="#show_and_hide/3" translate="no">show_and_hide(js \\ %JS{}, selector, id)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
         <a href="#show_modal/2" translate="no">show_modal(js \\ %JS{}, id)</a>
 
       </div>
@@ -348,7 +356,7 @@ Functions
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">back</span><span class="w"> </span><span class="n">navigate</span><span class="o">=</span><span class="p" data-group-id="3398156789-1">{</span><span class="sx">~p&quot;/posts&quot;</span><span class="p" data-group-id="3398156789-1">}</span><span class="o">&gt;</span><span class="nc">Back</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">posts</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">back</span><span class="o">&gt;</span></code></pre><h2 id="back/1-attributes" class="section-heading">
+<pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">back</span><span class="w"> </span><span class="n">navigate</span><span class="o">=</span><span class="p" data-group-id="7670720330-1">{</span><span class="sx">~p&quot;/posts&quot;</span><span class="p" data-group-id="7670720330-1">}</span><span class="o">&gt;</span><span class="nc">Back</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">posts</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">back</span><span class="o">&gt;</span></code></pre><h2 id="back/1-attributes" class="section-heading">
   <a href="#back/1-attributes" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
   <p class="sr-only">attributes</p>
   </a>
@@ -458,8 +466,8 @@ Global attributes are accepted.</li></ul><h2 id="button/1-slots" class="section-
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">flash</span><span class="w"> </span><span class="n">kind</span><span class="o">=</span><span class="p" data-group-id="3606326565-1">{</span><span class="ss">:info</span><span class="p" data-group-id="3606326565-1">}</span><span class="w"> </span><span class="n">flash</span><span class="o">=</span><span class="p" data-group-id="3606326565-2">{</span><span class="na">@flash</span><span class="p" data-group-id="3606326565-2">}</span><span class="w"> </span><span class="o">/</span><span class="o">&gt;</span><span class="w">
-</span><span class="o">&lt;</span><span class="o">.</span><span class="n">flash</span><span class="w"> </span><span class="n">kind</span><span class="o">=</span><span class="p" data-group-id="3606326565-3">{</span><span class="ss">:info</span><span class="p" data-group-id="3606326565-3">}</span><span class="w"> </span><span class="n">phx</span><span class="o">-</span><span class="n">mounted</span><span class="o">=</span><span class="p" data-group-id="3606326565-4">{</span><span class="n">show</span><span class="p" data-group-id="3606326565-5">(</span><span class="s">&quot;#flash&quot;</span><span class="p" data-group-id="3606326565-5">)</span><span class="p" data-group-id="3606326565-4">}</span><span class="o">&gt;</span><span class="nc">Welcome</span><span class="w"> </span><span class="nc">Back</span><span class="o">!</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">flash</span><span class="o">&gt;</span></code></pre><h2 id="flash/1-attributes" class="section-heading">
+<pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">flash</span><span class="w"> </span><span class="n">kind</span><span class="o">=</span><span class="p" data-group-id="1232149955-1">{</span><span class="ss">:info</span><span class="p" data-group-id="1232149955-1">}</span><span class="w"> </span><span class="n">flash</span><span class="o">=</span><span class="p" data-group-id="1232149955-2">{</span><span class="na">@flash</span><span class="p" data-group-id="1232149955-2">}</span><span class="w"> </span><span class="o">/</span><span class="o">&gt;</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">flash</span><span class="w"> </span><span class="n">kind</span><span class="o">=</span><span class="p" data-group-id="1232149955-3">{</span><span class="ss">:info</span><span class="p" data-group-id="1232149955-3">}</span><span class="w"> </span><span class="n">phx</span><span class="o">-</span><span class="n">mounted</span><span class="o">=</span><span class="p" data-group-id="1232149955-4">{</span><span class="n">show</span><span class="p" data-group-id="1232149955-5">(</span><span class="s">&quot;#flash&quot;</span><span class="p" data-group-id="1232149955-5">)</span><span class="p" data-group-id="1232149955-4">}</span><span class="o">&gt;</span><span class="nc">Welcome</span><span class="w"> </span><span class="nc">Back</span><span class="o">!</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">flash</span><span class="o">&gt;</span></code></pre><h2 id="flash/1-attributes" class="section-heading">
   <a href="#flash/1-attributes" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
   <p class="sr-only">attributes</p>
   </a>
@@ -500,7 +508,7 @@ Global attributes are accepted.</li></ul><h2 id="flash/1-slots" class="section-h
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">flash_group</span><span class="w"> </span><span class="n">flash</span><span class="o">=</span><span class="p" data-group-id="7280807941-1">{</span><span class="na">@flash</span><span class="p" data-group-id="7280807941-1">}</span><span class="w"> </span><span class="o">/</span><span class="o">&gt;</span></code></pre><h2 id="flash_group/1-attributes" class="section-heading">
+<pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">flash_group</span><span class="w"> </span><span class="n">flash</span><span class="o">=</span><span class="p" data-group-id="9125613775-1">{</span><span class="na">@flash</span><span class="p" data-group-id="9125613775-1">}</span><span class="w"> </span><span class="o">/</span><span class="o">&gt;</span></code></pre><h2 id="flash_group/1-attributes" class="section-heading">
   <a href="#flash_group/1-attributes" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
   <p class="sr-only">attributes</p>
   </a>
@@ -554,7 +562,7 @@ Global attributes are accepted.</li></ul><h2 id="flash/1-slots" class="section-h
     </a>
     <h1 class="signature" translate="no">hide(js \\ %JS{}, selector)</h1>
 
-      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L632" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L638" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -578,7 +586,7 @@ Global attributes are accepted.</li></ul><h2 id="flash/1-slots" class="section-h
     </a>
     <h1 class="signature" translate="no">hide_modal(js \\ %JS{}, id)</h1>
 
-      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L655" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L661" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -659,8 +667,8 @@ errors may be passed explicitly.</p><h2 id="input/1-examples" class="section-hea
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">input</span><span class="w"> </span><span class="n">field</span><span class="o">=</span><span class="p" data-group-id="8374829272-1">{</span><span class="na">@form</span><span class="p" data-group-id="8374829272-2">[</span><span class="ss">:email</span><span class="p" data-group-id="8374829272-2">]</span><span class="p" data-group-id="8374829272-1">}</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;email&quot;</span><span class="w"> </span><span class="o">/</span><span class="o">&gt;</span><span class="w">
-</span><span class="o">&lt;</span><span class="o">.</span><span class="n">input</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;my-input&quot;</span><span class="w"> </span><span class="n">errors</span><span class="o">=</span><span class="p" data-group-id="8374829272-3">{</span><span class="p" data-group-id="8374829272-4">[</span><span class="s">&quot;oh no!&quot;</span><span class="p" data-group-id="8374829272-4">]</span><span class="p" data-group-id="8374829272-3">}</span><span class="w"> </span><span class="o">/</span><span class="o">&gt;</span></code></pre><h2 id="input/1-attributes" class="section-heading">
+<pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">input</span><span class="w"> </span><span class="n">field</span><span class="o">=</span><span class="p" data-group-id="6282063092-1">{</span><span class="na">@form</span><span class="p" data-group-id="6282063092-2">[</span><span class="ss">:email</span><span class="p" data-group-id="6282063092-2">]</span><span class="p" data-group-id="6282063092-1">}</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;email&quot;</span><span class="w"> </span><span class="o">/</span><span class="o">&gt;</span><span class="w">
+</span><span class="o">&lt;</span><span class="o">.</span><span class="n">input</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;my-input&quot;</span><span class="w"> </span><span class="n">errors</span><span class="o">=</span><span class="p" data-group-id="6282063092-3">{</span><span class="p" data-group-id="6282063092-4">[</span><span class="s">&quot;oh no!&quot;</span><span class="p" data-group-id="6282063092-4">]</span><span class="p" data-group-id="6282063092-3">}</span><span class="w"> </span><span class="o">/</span><span class="o">&gt;</span></code></pre><h2 id="input/1-attributes" class="section-heading">
   <a href="#input/1-attributes" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
   <p class="sr-only">attributes</p>
   </a>
@@ -777,7 +785,7 @@ Global attributes are accepted.</li></ul><h2 id="input/1-slots" class="section-h
   </span><span class="o">&lt;</span><span class="ss">:confirm</span><span class="o">&gt;</span><span class="nc">OK</span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:confirm</span><span class="o">&gt;</span><span class="w">
   </span><span class="o">&lt;</span><span class="ss">:cancel</span><span class="o">&gt;</span><span class="nc">Cancel</span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:cancel</span><span class="o">&gt;</span><span class="w">
 </span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">modal</span><span class="o">&gt;</span></code></pre><p>JS commands may be passed to the <code class="inline">:on_cancel</code> and <code class="inline">on_confirm</code> attributes
-for the caller to react to each button press, for example:</p><pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">modal</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;confirm&quot;</span><span class="w"> </span><span class="n">on_confirm</span><span class="o">=</span><span class="p" data-group-id="4897276874-1">{</span><span class="nc">JS</span><span class="o">.</span><span class="n">push</span><span class="p" data-group-id="4897276874-2">(</span><span class="s">&quot;delete&quot;</span><span class="p" data-group-id="4897276874-2">)</span><span class="p" data-group-id="4897276874-1">}</span><span class="w"> </span><span class="n">on_cancel</span><span class="o">=</span><span class="p" data-group-id="4897276874-3">{</span><span class="nc">JS</span><span class="o">.</span><span class="n">navigate</span><span class="p" data-group-id="4897276874-4">(</span><span class="sx">~p&quot;/posts&quot;</span><span class="p" data-group-id="4897276874-4">)</span><span class="p" data-group-id="4897276874-3">}</span><span class="o">&gt;</span><span class="w">
+for the caller to react to each button press, for example:</p><pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">modal</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;confirm&quot;</span><span class="w"> </span><span class="n">on_confirm</span><span class="o">=</span><span class="p" data-group-id="3283552320-1">{</span><span class="nc">JS</span><span class="o">.</span><span class="n">push</span><span class="p" data-group-id="3283552320-2">(</span><span class="s">&quot;delete&quot;</span><span class="p" data-group-id="3283552320-2">)</span><span class="p" data-group-id="3283552320-1">}</span><span class="w"> </span><span class="n">on_cancel</span><span class="o">=</span><span class="p" data-group-id="3283552320-3">{</span><span class="nc">JS</span><span class="o">.</span><span class="n">navigate</span><span class="p" data-group-id="3283552320-4">(</span><span class="sx">~p&quot;/posts&quot;</span><span class="p" data-group-id="3283552320-4">)</span><span class="p" data-group-id="3283552320-3">}</span><span class="o">&gt;</span><span class="w">
   </span><span class="nc">Are</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">sure</span><span class="w"> </span><span class="n">you?</span><span class="w">
   </span><span class="o">&lt;</span><span class="ss">:confirm</span><span class="o">&gt;</span><span class="nc">OK</span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:confirm</span><span class="o">&gt;</span><span class="w">
   </span><span class="o">&lt;</span><span class="ss">:cancel</span><span class="o">&gt;</span><span class="nc">Cancel</span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:cancel</span><span class="o">&gt;</span><span class="w">
@@ -807,7 +815,31 @@ for the caller to react to each button press, for example:</p><pre><code class="
     </a>
     <h1 class="signature" translate="no">show(js \\ %JS{}, selector)</h1>
 
-      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L622" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L628" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="show_and_hide/3">
+
+    <span id="show_and_hide/2"></span>
+
+  <div class="detail-header">
+    <a href="#show_and_hide/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">show_and_hide(js \\ %JS{}, selector, id)</h1>
+
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L177" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -831,7 +863,7 @@ for the caller to react to each button press, for example:</p><pre><code class="
     </a>
     <h1 class="signature" translate="no">show_modal(js \\ %JS{}, id)</h1>
 
-      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L643" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L649" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -869,9 +901,9 @@ for the caller to react to each button press, for example:</p><pre><code class="
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">simple_form</span><span class="w"> </span><span class="k">for</span><span class="o">=</span><span class="p" data-group-id="5554662232-1">{</span><span class="na">@form</span><span class="p" data-group-id="5554662232-1">}</span><span class="w"> </span><span class="n">phx</span><span class="o">-</span><span class="n">change</span><span class="o">=</span><span class="s">&quot;validate&quot;</span><span class="w"> </span><span class="n">phx</span><span class="o">-</span><span class="n">submit</span><span class="o">=</span><span class="s">&quot;save&quot;</span><span class="o">&gt;</span><span class="w">
-  </span><span class="o">&lt;</span><span class="o">.</span><span class="n">input</span><span class="w"> </span><span class="n">field</span><span class="o">=</span><span class="p" data-group-id="5554662232-2">{</span><span class="na">@form</span><span class="p" data-group-id="5554662232-3">[</span><span class="ss">:email</span><span class="p" data-group-id="5554662232-3">]</span><span class="p" data-group-id="5554662232-2">}</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Email&quot;</span><span class="o">/</span><span class="o">&gt;</span><span class="w">
-  </span><span class="o">&lt;</span><span class="o">.</span><span class="n">input</span><span class="w"> </span><span class="n">field</span><span class="o">=</span><span class="p" data-group-id="5554662232-4">{</span><span class="na">@form</span><span class="p" data-group-id="5554662232-5">[</span><span class="ss">:username</span><span class="p" data-group-id="5554662232-5">]</span><span class="p" data-group-id="5554662232-4">}</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Username&quot;</span><span class="w"> </span><span class="o">/</span><span class="o">&gt;</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">simple_form</span><span class="w"> </span><span class="k">for</span><span class="o">=</span><span class="p" data-group-id="7272671477-1">{</span><span class="na">@form</span><span class="p" data-group-id="7272671477-1">}</span><span class="w"> </span><span class="n">phx</span><span class="o">-</span><span class="n">change</span><span class="o">=</span><span class="s">&quot;validate&quot;</span><span class="w"> </span><span class="n">phx</span><span class="o">-</span><span class="n">submit</span><span class="o">=</span><span class="s">&quot;save&quot;</span><span class="o">&gt;</span><span class="w">
+  </span><span class="o">&lt;</span><span class="o">.</span><span class="n">input</span><span class="w"> </span><span class="n">field</span><span class="o">=</span><span class="p" data-group-id="7272671477-2">{</span><span class="na">@form</span><span class="p" data-group-id="7272671477-3">[</span><span class="ss">:email</span><span class="p" data-group-id="7272671477-3">]</span><span class="p" data-group-id="7272671477-2">}</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Email&quot;</span><span class="o">/</span><span class="o">&gt;</span><span class="w">
+  </span><span class="o">&lt;</span><span class="o">.</span><span class="n">input</span><span class="w"> </span><span class="n">field</span><span class="o">=</span><span class="p" data-group-id="7272671477-4">{</span><span class="na">@form</span><span class="p" data-group-id="7272671477-5">[</span><span class="ss">:username</span><span class="p" data-group-id="7272671477-5">]</span><span class="p" data-group-id="7272671477-4">}</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Username&quot;</span><span class="w"> </span><span class="o">/</span><span class="o">&gt;</span><span class="w">
   </span><span class="o">&lt;</span><span class="ss">:actions</span><span class="o">&gt;</span><span class="w">
     </span><span class="o">&lt;</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="nc">Save</span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">button</span><span class="o">&gt;</span><span class="w">
   </span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:actions</span><span class="o">&gt;</span><span class="w">
@@ -916,9 +948,9 @@ Global attributes are accepted.</li></ul><h2 id="simple_form/1-slots" class="sec
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">table</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;users&quot;</span><span class="w"> </span><span class="n">rows</span><span class="o">=</span><span class="p" data-group-id="9644486734-1">{</span><span class="na">@users</span><span class="p" data-group-id="9644486734-1">}</span><span class="o">&gt;</span><span class="w">
-  </span><span class="o">&lt;</span><span class="ss">:col</span><span class="w"> </span><span class="ss">:let</span><span class="o">=</span><span class="p" data-group-id="9644486734-2">{</span><span class="n">user</span><span class="p" data-group-id="9644486734-2">}</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;id&quot;</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="p">%</span><span class="o">=</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="w"> </span><span class="p">%</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:col</span><span class="o">&gt;</span><span class="w">
-  </span><span class="o">&lt;</span><span class="ss">:col</span><span class="w"> </span><span class="ss">:let</span><span class="o">=</span><span class="p" data-group-id="9644486734-3">{</span><span class="n">user</span><span class="p" data-group-id="9644486734-3">}</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;username&quot;</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="p">%</span><span class="o">=</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="w"> </span><span class="p">%</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:col</span><span class="o">&gt;</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="o">&lt;</span><span class="o">.</span><span class="n">table</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;users&quot;</span><span class="w"> </span><span class="n">rows</span><span class="o">=</span><span class="p" data-group-id="4732649781-1">{</span><span class="na">@users</span><span class="p" data-group-id="4732649781-1">}</span><span class="o">&gt;</span><span class="w">
+  </span><span class="o">&lt;</span><span class="ss">:col</span><span class="w"> </span><span class="ss">:let</span><span class="o">=</span><span class="p" data-group-id="4732649781-2">{</span><span class="n">user</span><span class="p" data-group-id="4732649781-2">}</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;id&quot;</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="p">%</span><span class="o">=</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="w"> </span><span class="p">%</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:col</span><span class="o">&gt;</span><span class="w">
+  </span><span class="o">&lt;</span><span class="ss">:col</span><span class="w"> </span><span class="ss">:let</span><span class="o">=</span><span class="p" data-group-id="4732649781-3">{</span><span class="n">user</span><span class="p" data-group-id="4732649781-3">}</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;username&quot;</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="p">%</span><span class="o">=</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="w"> </span><span class="p">%</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="o">/</span><span class="ss">:col</span><span class="o">&gt;</span><span class="w">
 </span><span class="o">&lt;</span><span class="o">/</span><span class="o">.</span><span class="n">table</span><span class="o">&gt;</span></code></pre><h2 id="table/1-attributes" class="section-heading">
   <a href="#table/1-attributes" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
   <p class="sr-only">attributes</p>
@@ -943,7 +975,7 @@ Global attributes are accepted.</li></ul><h2 id="simple_form/1-slots" class="sec
     </a>
     <h1 class="signature" translate="no">translate_error(arg)</h1>
 
-      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L670" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L676" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -965,7 +997,7 @@ Global attributes are accepted.</li></ul><h2 id="simple_form/1-slots" class="sec
     </a>
     <h1 class="signature" translate="no">translate_errors(errors, field)</h1>
 
-      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L698" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/rosenbergm/plejady/blob/main/lib/plejady_web/components/core_components.ex#L704" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
