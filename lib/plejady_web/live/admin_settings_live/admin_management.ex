@@ -91,9 +91,17 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
 
       <div
         :if={@current_user.role == :lead}
-        class="flex flex-col gap-4 max-w-[50rem] p-2 sm:p-4 rounded ring-4 ring-red-400/50 hover:ring-red-400 transition"
+        class="flex flex-col gap-4 relative max-w-[50rem] p-2 sm:p-4 rounded ring-4 ring-red-400/50 hover:ring-red-400 transition"
       >
-        <h6 class="text-md font-bold">Předat roli hlavního administrátora ↓</h6>
+        <h6 class="text-md font-bold pr-6">
+          Předat roli hlavního administrátora ↓
+        </h6>
+
+        <.tooltip class="absolute top-2 right-2 sm:top-4 sm:right-4">
+          <p class="text-sm font-semibold text-primary">
+            Předání hlavního administrátora znamená, že ztratíte veškerou kontrolu nad ostatními administrátory a nad nastavování přednášek. Sami budete nastaveni jako běžný administrátor.
+          </p>
+        </.tooltip>
 
         <.form
           for={@transfer}

@@ -122,6 +122,21 @@ defmodule PlejadyWeb.CoreComponents do
     """
   end
 
+  attr :class, :string, default: nil, doc: "the optional class of the container"
+
+  slot :inner_block, required: true
+
+  def tooltip(assigns) do
+    ~H"""
+    <div class={["group", @class]}>
+      <.icon name="hero-information-circle" />
+      <div class="hidden group-hover:block absolute bottom-4 right-4 xl:left-4 bg-secondary border-primary border-2 rounded px-3 py-2 min-w-[50vw] sm:min-w-[24rem] max-w-2xl">
+        <%= render_slot(@inner_block) %>
+      </div>
+    </div>
+    """
+  end
+
   @doc """
   Renders flash notices.
 
