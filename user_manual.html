@@ -13,7 +13,7 @@
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-XRYTXUVD.js"></script>
-    <script src="dist/sidebar_items-B6B7DB78.js"></script>
+    <script src="dist/sidebar_items-EED78199.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -117,7 +117,55 @@ Plejády
   </a>
   Po přihlášení
 </h2>
-<p><img src="docs_images/main.png" alt="Hlavní stránka po přihlášení"/></p><p>Po úspěšném příhlášení se dostanete na stránku podobnou této. Vzhledem k tomu, že přihlašování zatím nejspíš není otevřené, nezobrazí se Vám tabulka s přednáškami. V horní části obrazovky na odhlášení a, pokud jste administrátor, na tlačítko na administraci systému.</p><p>Pokud již administrátoři nastavili čas spuštění přihlašování, zobrazí se Vám na hlavní stránce, abyste věděli, kdy se na stránku dostavit a vybrat si své přihlášky.</p><hr class="thin"/><p>TODO: Doplnit obrázek</p><p>Poté co se přihlašování spustí, zobrazí se Vám tabulka s přednáškami. U každé přednášky uvidíte detaily o ní a také to, jak moc je zaplněná. Kapacita přednášky se mění v reálném čase, tudíž v každý okamžik vidíte, kolik je volných míst. Po zaplnění všech míst se přednáška zatmaví a už na ni není možné kliknout.</p>
+<p><img src="docs_images/main.png" alt="Hlavní stránka po přihlášení"/></p><p>Po úspěšném příhlášení se dostanete na stránku podobnou této. Vzhledem k tomu, že přihlašování zatím nejspíš není otevřené, nezobrazí se Vám tabulka s přednáškami. V horní části obrazovky na odhlášení a, pokud jste administrátor, na tlačítko na administraci systému.</p><p>Pokud již administrátoři nastavili čas spuštění přihlašování, zobrazí se Vám na hlavní stránce, abyste věděli, kdy se na stránku dostavit a vybrat si své přihlášky.</p><hr class="thin"/><p>TODO: Doplnit obrázek</p><p>Poté co se přihlašování spustí, zobrazí se Vám tabulka s přednáškami. U každé přednášky uvidíte detaily o ní a také to, jak moc je zaplněná. Kapacita přednášky se mění v reálném čase, tudíž v každý okamžik vidíte, kolik je volných míst. Po zaplnění všech míst se přednáška zatmaví a už na ni není možné kliknout.</p><h2 id="administrátorské-rozhraní" class="section-heading">
+  <a href="#administrátorské-rozhraní" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">administrátorské-rozhraní</p>
+  </a>
+  Administrátorské rozhraní
+</h2>
+<p>Před spuštením samotného přihlašování se musí administrátoři systému postarat o to, aby byl systém připravený – musí do systému přidat jednotlivé místnosti, časové bloky a přednášky. Administrátorské rozhraní je dostupné pouze po přihlášení. Pokud jste administrátor, zobrazí se Vám na hlavní stránce tlačítko <em>Panel administrace</em>, skrz které se můžete do administrátorského rozhraní dostat.</p><p>Administrátorská oprávnění jsou rozdělena do dvou kategorií:</p><ul><li><strong>Hlavní administrátor</strong> – je pouze jeden a má plná práva v systému (přidání přednášek, přidávání a odebírání ostatních administrátorů, spouštění systému).</li><li><strong>Administrátor</strong> – je přidán z čistě organizačního důvodu. Administrátoři (tzn. další členové organizačního týmu) se na jednotlivé přednášky nemusí přihlašovat, jejich přítomnost (docházka pro vedení školy) je evidována jinak.</li></ul><p>Administrátorské rozhraní je rozděleno na dvě části:</p><ul><li><p><strong>Program</strong> – zde se nachází veškerá úprava přednášek, místností a časových bloků.</p></li><li><p><strong>Další nastavení</strong> – do něj se lze prokliknout skrz tlačítko <em>Další nastavení</em> v Panelu administrace. Zde může hlavní administrátor spravovat administrátory, předat svou roli jinému administrátorovi, nastavit časované spuštění přihlašování a po ukončení přihlašování zobrazit a vytisknout seznam jednotlivých studentů.</p></li></ul><hr class="thin"/><p><img src="docs_images/admin.png" alt="Administrátorské rozhraní"/></p><p>Pojďme si teď podrobněji prohlédnout jednotlivé sekce administrátorského rozhraní.</p><p>Každá sekce, která je pro systém kritická je náležitě označena &quot;Danger zone&quot;.</p><h3 id="seznam-administrátorstva" class="section-heading">
+  <a href="#seznam-administrátorstva" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">seznam-administrátorstva</p>
+  </a>
+  Seznam administrátorstva
+</h3>
+<p>Zde se nachází seznam všech administrátorů, kteří se dosud do systému přihlásili. Můžete je odebrat pomocí tlačítka <em>Odebrat</em>.</p><h3 id="navržení-administrátoři" class="section-heading">
+  <a href="#navržení-administrátoři" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">navržení-administrátoři</p>
+  </a>
+  Navržení administrátoři
+</h3>
+<p>Zde uvidíte administrátory, které jste do systému tzv. navrhli. To znamená, že se po jejich prvním přihlášení automaticky stanou administrátory.</p><h3 id="přidat-nebo-navrhnout-administátora" class="section-heading">
+  <a href="#přidat-nebo-navrhnout-administátora" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">přidat-nebo-navrhnout-administátora</p>
+  </a>
+  Přidat nebo navrhnout administátora
+</h3>
+<p>Zde se nachází jedno políčko pro vyplnění e-mailu nového nebo navrhnutého administátora. Po vyplnění e-mailu a stisknutí tlačítka <em>Přidat</em> se nový administrátor přidá do systému.</p><p>Pozor na správnost e-mailu. Momentální formát je <em>&lt;příjmení&gt;.&lt;jméno&gt;@student.alej.cz</em>.</p><h3 id="předat-roli-hlavního-administrátora" class="section-heading">
+  <a href="#předat-roli-hlavního-administrátora" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">předat-roli-hlavního-administrátora</p>
+  </a>
+  Předat roli hlavního administrátora
+</h3>
+<p>Zde se nachází jedno políčko pro vyplnění e-mailu nového hlavního administrátora. Po vyplnění e-mailu a stisknutí tlačítka <em>Předat</em> se stane daný uživatel hlavním administrátorem a vy ztratíte veškerá práva hlavního administátora.</p><h3 id="časované-spuštění-a-hosté" class="section-heading">
+  <a href="#časované-spuštění-a-hosté" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">časované-spuštění-a-hosté</p>
+  </a>
+  Časované spuštění a hosté
+</h3>
+<p>Zde můžete nastavit dvě hodnoty:</p><ul><li><strong>Čas spuštění přihlašování</strong> – přesně v tento čas se přihlašování automaticky spustí.</li><li><strong>Maximální počet hostů</strong> – tento údaj udáva, kolik se může přihlásit hostů (tj. lidí, co nemají školní e-mail, např. absolventi).</li></ul><h3 id="otevřít-nyní" class="section-heading">
+  <a href="#otevřít-nyní" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">otevřít-nyní</p>
+  </a>
+  Otevřít nyní
+</h3>
+<p>Tlačítko <em>Otevřít nyní</em> spustí přihlašování ihned. Pokud je přihlašování již spuštěno, tlačítko <em>Ukončit nyní</em> přihlašování ukončí.</p><p>Na toto tlačítko pozor, protože systém otevře vskutku ihned, používá se tedy jen v mimořádných případech – tým zapomněl zadat čas časovaného spuštění nebo je-li potřeba systém ihned uzavřít.</p><h3 id="další" class="section-heading">
+  <a href="#další" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">další</p>
+  </a>
+  Další
+</h3>
+<p>Zde se nachází tlačítko <em>Seznam pro vedení školy</em>. Vedení školy požaduje jakousi evidenci studentů – kdo se přihlásil na kterou přednášku. Tento seznam je vytvořený z dat, která jsou v systému uložena. Tento seznam je nutné vytisknout, přinést ho na každou přednášku a nechat ho po třídě kolovat. Studenti se ke svému jménu musí podepsat. Takto vyplněné archy se následně odevzdají vedení školy.</p>
 <div class="bottom-actions">
   <div class="bottom-actions-item">
 
