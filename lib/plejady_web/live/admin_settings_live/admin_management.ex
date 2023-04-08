@@ -84,7 +84,7 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
           placeholder="polouckova.karla@student.alej.cz"
         />
 
-        <.button class="flex-1 sm:flex-none" phx-disable-with="Ukládám...">Uložit</.button>
+        <.button class="flex-1 sm:flex-none" phx-disable-with="Ukládám...">Přidat</.button>
       </.form>
 
       <h6 class="text-red-400 font-bold">Danger zone ↓</h6>
@@ -124,7 +124,7 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
             data-confirm="Opravdu chcete přenést své hlavní administrátorství? Ztratíte tím veškerou kontrolu nad ostatními administrátory!"
             phx-disable-with="Ukládám..."
           >
-            Uložit
+            Předat
           </.button>
         </.form>
       </div>
