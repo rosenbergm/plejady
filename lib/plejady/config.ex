@@ -24,15 +24,16 @@ defmodule Plejady.Config do
   defp to_czech_timezone(nil), do: nil
 
   defp to_czech_timezone(datetime) do
-    DateTime.shift_zone!(datetime, "Europe/Prague", Tz.TimeZoneDatabase)
+    Timex.Timezone.convert(datetime, "Europe/Prague")
   end
 
   def from_czech_timezone(nil), do: nil
 
   def from_czech_timezone(form_date) do
-    NaiveDateTime.from_iso8601!(form_date <> ":00.000Z")
-    |> DateTime.from_naive!("Europe/Prague", Tz.TimeZoneDatabase)
-    |> DateTime.shift_zone!("Etc/UTC")
+    {:ok, naive} = Timex.parse(form_date, "%Y-%m-%dT%H:%M", :strftime)
+
+    Timex.Timezone.convert(naive, "Europe/Prague")
+    |> Timex.Timezone.convert("UTC")
   end
 
   @impl true
