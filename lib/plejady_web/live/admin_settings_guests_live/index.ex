@@ -5,7 +5,7 @@ defmodule PlejadyWeb.AdminSettingsGuestsLive.Index do
 
   alias Plejady.Accounts
 
-  on_mount {UserAuth, :ensure_lead}
+  on_mount {PlejadyWeb.UserAuth, :ensure_lead}
 
   def mount(_params, _session, socket) do
     {:ok, socket |> assign(guests: Accounts.guests())}
