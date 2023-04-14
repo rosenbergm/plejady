@@ -31,7 +31,7 @@ Pokud již administrátoři nastavili čas spuštění přihlašování, zobraz�
 
 ---
 
-TODO: Doplnit obrázek
+![Hlavní stránka při spuštěném přihlášení](docs_images/app.png)
 
 Poté co se přihlašování spustí, zobrazí se Vám tabulka s přednáškami. U každé přednášky uvidíte detaily o ní a také to, jak moc je zaplněná. Kapacita přednášky se mění v reálném čase, tudíž v každý okamžik vidíte, kolik je volných míst. Po zaplnění všech míst se přednáška zatmaví a už na ni není možné kliknout.
 
