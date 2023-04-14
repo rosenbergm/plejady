@@ -400,7 +400,7 @@ defmodule PlejadyWeb.CoreComponents do
 
   def input(assigns) do
     ~H"""
-    <div phx-feedback-for={@name} class="w-full space-y-2">
+    <div phx-feedback-for={@name} class="md:min-w-[20rem] space-y-2">
       <.label :if={@label} for={@id}><%= @label %></.label>
       <input
         type={@type}
@@ -408,7 +408,7 @@ defmodule PlejadyWeb.CoreComponents do
         id={@id || @name}
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
         class={[
-          "block w-full rounded-md bg-transparent py-2 px-4",
+          "block w-[100%] rounded-md bg-transparent py-2 px-4",
           "text-primary placeholder:text-primary/60 focus:outline-none focus:ring-4 text-sm leading-6",
           "phx-no-feedback:border-primary/90 phx-no-feedback:focus:border-primary/70 phx-no-feedback:focus:ring-primary/5",
           "border-primary focus:border-primary/60 focus:ring-primary/5",

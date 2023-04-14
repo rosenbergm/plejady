@@ -37,15 +37,6 @@ defmodule PlejadyWeb.AuthController do
     |> redirect(to: ~p"/")
   end
 
-  # TODO: Uncomment this!
-  # def callback(
-  #       %{
-  #         assigns: %{
-  #           ueberauth_auth: %Auth{info: %Info{urls: %{website: "student.alej.cz"}}} = auth
-  #         }
-  #       } = conn,
-  #       _params
-  #     ) do
   def callback(
         %{
           assigns: %{

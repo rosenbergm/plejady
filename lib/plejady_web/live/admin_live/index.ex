@@ -6,6 +6,8 @@ defmodule PlejadyWeb.AdminLive.Index do
   alias Plejady.Timeblock
   use PlejadyWeb, :live_view
 
+  on_mount {PlejadyWeb.UserAuth, :ensure_lead}
+
   @impl true
   def mount(_params, _session, socket) do
     {:ok,

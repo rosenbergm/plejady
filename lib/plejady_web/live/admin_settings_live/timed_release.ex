@@ -24,12 +24,19 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
         phx-change="validate"
         phx-submit="save"
         id="timed-release-form"
-        class="flex sm:items-end flex-col sm:flex-row gap-4 max-w-[50rem]"
+        class="flex flex-wrap sm:items-end flex-col sm:flex-row gap-4 max-w-[50rem]"
       >
         <.input
           field={@form[:timed_release]}
           type="datetime-local"
-          label="Spuštění proběhne v tento čas (český čas)"
+          label="Přihlašování se spustí v tento čas (český čas)"
+          phx-hook="LocalTime"
+        />
+
+        <.input
+          field={@form[:timed_release_end]}
+          type="datetime-local"
+          label="Přihlašování se ukončí v tento čas (český čas)"
           phx-hook="LocalTime"
         />
 
@@ -98,9 +105,9 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
     Config.set_config(config)
 
     if Process.whereis(Plejady.TimedRelease) do
-      GenServer.cast(Plejady.TimedRelease, {:update, config.timed_release})
+      GenServer.cast(Plejady.TimedRelease, {:update, {config.timed_release, config.timed_release_end}})
     else
-      GenServer.start(Plejady.TimedRelease, config.timed_release, name: Plejady.TimedRelease)
+      GenServer.start(Plejady.TimedRelease, {config.timed_release, config.timed_release_end}, name: Plejady.TimedRelease)
     end
 
     {
@@ -116,7 +123,9 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
 
     %Schema{
       is_open: true,
-      timed_release: nil
+      has_ended: false,
+      timed_release: nil,
+      timed_release_end: nil
     }
     |> Config.set_config()
 
@@ -133,7 +142,9 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
   def handle_event("close_now", _params, socket) do
     %Schema{
       is_open: false,
-      timed_release: nil
+      has_ended: true,
+      timed_release: nil,
+      timed_release_end: nil
     }
     |> Config.set_config()
 

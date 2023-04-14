@@ -63,6 +63,7 @@ defmodule PlejadyWeb.Router do
 
       live "/admin/settings", AdminSettingsLive.Index, :index
       live "/admin/settings/list", AdminSettingsListLive.Index, :index
+      live "/admin/settings/guests", AdminSettingsGuestsLive.Index, :index
 
       live "/admin/sheet", AdminSheetLive
     end

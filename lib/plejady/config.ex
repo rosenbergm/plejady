@@ -7,6 +7,8 @@ defmodule Plejady.Config do
   alias Plejady.Config.Schema
   use GenServer
 
+  import Ecto.Changeset
+
   @impl true
   def init(:ok) do
     {:ok, Schema.default()}
@@ -17,6 +19,7 @@ defmodule Plejady.Config do
     formatted_config =
       config
       |> Map.update(:timed_release, nil, &to_czech_timezone/1)
+      |> Map.update(:timed_release_end, nil, &to_czech_timezone/1)
 
     {:reply, formatted_config, config}
   end
@@ -37,8 +40,13 @@ defmodule Plejady.Config do
   end
 
   @impl true
-  def handle_cast({:update, new_config}, _config) do
+  def handle_cast({:set, new_config}, _config) do
     {:noreply, new_config}
+  end
+
+  @impl true
+  def handle_cast({:update, params}, config) do
+    {:noreply, config |> Schema.changeset(params) |> apply_changes()}
   end
 
   @doc """
@@ -56,10 +64,17 @@ defmodule Plejady.Config do
   end
 
   @doc """
-  Updates the current config.
+  Sets the current config.
   """
   def set_config(new_config) do
-    GenServer.cast(__MODULE__, {:update, new_config})
+    GenServer.cast(__MODULE__, {:set, new_config})
+  end
+
+  @doc """
+  Updates the current config.
+  """
+  def update_config(params) do
+    GenServer.cast(__MODULE__, {:update, params})
   end
 
   defmodule Schema do
@@ -74,7 +89,9 @@ defmodule Plejady.Config do
 
     embedded_schema do
       field :is_open, :boolean, default: false
+      field :has_ended, :boolean, default: false
       field :timed_release, :utc_datetime, default: nil
+      field :timed_release_end, :utc_datetime, default: nil
       field :guest_capacity, :integer, default: 30
     end
 
@@ -83,7 +100,7 @@ defmodule Plejady.Config do
     """
     def changeset(schema, params \\ %{}) do
       schema
-      |> cast(params, [:timed_release, :is_open, :guest_capacity])
+      |> cast(params, [:timed_release, :timed_release_end, :is_open, :has_ended, :guest_capacity])
     end
 
     @doc """
@@ -92,9 +109,8 @@ defmodule Plejady.Config do
     def default do
       %Schema{
         is_open: false,
-        # TODO: Figure this out
         timed_release: nil,
-        # timed_release: DateTime.utc_now(),
+        timed_release_end: nil,
         guest_capacity: 30
       }
     end
@@ -102,10 +118,11 @@ defmodule Plejady.Config do
     @doc """
     Returns a new config.
     """
-    def new(is_open, open_at_time) do
+    def new(is_open, open_at_time, close_at_time) do
       %Schema{
         is_open: is_open,
-        timed_release: open_at_time
+        timed_release: open_at_time,
+        timed_release_end: close_at_time
       }
     end
 
@@ -124,6 +141,7 @@ defmodule Plejady.Config do
       params =
         params
         |> Map.update("timed_release", nil, &Config.from_czech_timezone/1)
+        |> Map.update("timed_release_end", nil, &Config.from_czech_timezone/1)
 
       %Schema{}
       |> changeset(params)

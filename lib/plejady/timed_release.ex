@@ -8,36 +8,53 @@ defmodule Plejady.TimedRelease do
   alias Plejady.Config.Schema
 
   @impl true
-  def init(time) do
+  def init({start_time, end_time}) do
     send(self(), :tick)
 
-    {:ok, time}
+    {:ok, {start_time, end_time}}
   end
 
   @impl true
-  def handle_cast({:update, new_time}, _old_time) do
+  def handle_cast({:update, {_start_time, _end_time} =  new_time}, _old_time) do
     {:noreply, new_time}
   end
 
   @impl true
-  def handle_info(:tick, time) do
-    if DateTime.compare(DateTime.utc_now(), time) == :gt do
+  def handle_info(:tick, {start_time, end_time} = timing) do
+    config = Config.get_config()
+
+    if not config.is_open && DateTime.compare(DateTime.utc_now(), start_time) == :gt do
       CacheInitiator.initiate()
 
-      %Schema{
+      %{
         is_open: true,
+        has_ended: false,
         timed_release: nil
       }
-      |> Config.set_config()
+      |> Config.update_config()
+
+      PlejadyWeb.Endpoint.broadcast_from(self(), "presentations", "refresh", nil)
+    end
+
+    if config.is_open && DateTime.compare(DateTime.utc_now(), end_time) == :gt do
+      CacheInitiator.initiate()
+
+      %{
+        is_open: false,
+        has_ended: true,
+        timed_release: nil
+      }
+      |> Config.update_config()
 
       PlejadyWeb.Endpoint.broadcast_from(self(), "presentations", "refresh", nil)
 
       send(self(), :kill)
     end
 
-    Process.send_after(self(), :tick, 1000)
 
-    {:noreply, time}
+    Process.send_after(self(), :tick, 5000)
+
+    {:noreply, timing}
   end
 
   @impl true

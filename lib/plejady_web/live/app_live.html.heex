@@ -1,7 +1,7 @@
-<.app_header title="Váš aktuální rozvrh" current_user={@current_user}>
+<.app_header title={if @has_ended do "Váš finální rozvrh" else "Přihlašujte se!" end} current_user={@current_user}>
   <:actions>
     <.link
-      :if={@current_user.role in [:admin, :lead]}
+      :if={@current_user.role == :lead}
       href={~p"/admin"}
       class="text-sm font-medium tracking-tight underline hover:no-underline"
     >
@@ -24,7 +24,7 @@
   Přihlašování se otevře <%= format_datetime(@config.timed_release) %>.
 </h1>
 
-<section :if={@config.is_open} class="px-4 md:px-4 lg:px-16 h-full w-screen">
+<section :if={@config.is_open || @has_ended} class="px-4 md:px-4 lg:px-16 h-full w-screen">
   <div class="flow-root h-full pt-2 md:pb-8">
     <div class="-my-2 -mx-4 overflow-x-auto md:-mx-4 lg:-mx-16 h-full">
       <div class="inline-block min-w-full align-middle md:px-4 lg:px-16 h-full">
@@ -82,12 +82,13 @@
                     class={[
                       "presentation bg-tertiary/50 p-3 cursor-pointer hover:bg-tertiary/90 transition relative",
                       Map.get(@occupancy, Map.get(presentation, :id), 0) >= max_capacity &&
-                        "disabled",
-                      presentation.id in @signed_up_for && "bg-primary text-secondary"
+                        "disabled cursor-not-allowed",
+                      (@has_ended || @current_user.role != :user ) && "cursor-not-allowed",
+                      presentation.id in @signed_up_for && "sel"
                     ]}
                     align="center"
                     phx-click={
-                      @current_user.role == :user &&
+                      not @has_ended && @current_user.role == :user &&
                         JS.push("toggle-presentation", value: %{presentation_id: presentation.id})
                     }
                   >

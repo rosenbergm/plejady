@@ -5,8 +5,7 @@ defmodule PlejadyWeb.AdminSettingsListLive.Index do
 
   alias Plejady.Presentation
 
-  # TODO: Uncomment this!
-  # on_mount {UserAuth, :ensure_lead}
+  on_mount {UserAuth, :ensure_lead}
 
   def mount(_params, _session, socket) do
     {:ok, socket |> assign(presentations: Presentation.all_preloaded())}
@@ -20,7 +19,7 @@ defmodule PlejadyWeb.AdminSettingsListLive.Index do
           navigate={~p"/admin/settings"}
           class="text-sm font-medium tracking-tight underline hover:no-underline"
         >
-          Další nastavení
+          ← Zpět
         </.link>
       </:actions>
     </.app_header>

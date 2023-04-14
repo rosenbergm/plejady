@@ -19,6 +19,15 @@ defmodule Plejady.Accounts do
   end
 
   @doc """
+  Fetches all guests.
+
+  > This is a database action.
+  """
+  def guests do
+    Repo.all(Guest)
+  end
+
+  @doc """
   Fetches a number of free guest places.
   """
   def get_free_guest_places do

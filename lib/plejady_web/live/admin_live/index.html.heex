@@ -1,12 +1,6 @@
 <.app_header title="Panel administrace" current_user={@current_user}>
   <:actions>
     <.link
-      navigate={~p"/app"}
-      class="text-sm font-medium tracking-tight underline hover:no-underline"
-    >
-      Pohled uživatele
-    </.link>
-    <.link
       :if={@current_user.role == :lead}
       navigate={~p"/admin/settings"}
       class="text-sm font-medium tracking-tight underline hover:no-underline"

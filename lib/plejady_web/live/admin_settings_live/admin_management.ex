@@ -25,7 +25,7 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
   def render(assigns) do
     ~H"""
     <article class="px-4 lg:px-16 space-y-6">
-      <h2 class="font-bold text-lg">Seznam administrátorstva ↓</h2>
+      <h2 class="font-bold text-lg">Organizační tým ↓</h2>
 
       <.table id="admins" rows={@streams.admins}>
         <:col :let={{_id, admin}} label="Jméno">
@@ -49,7 +49,7 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
         </:action>
       </.table>
 
-      <h2 class="font-bold text-lg">Navržení administrátoři ↓</h2>
+      <h2 class="font-bold text-lg">Navržení organizátoři ↓</h2>
 
       <.table id="suggested_admins" rows={@streams.suggested_admins}>
         <:col :let={{_id, admin}} label="E-mail"><%= admin.email %></:col>
@@ -67,7 +67,7 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
         </:action>
       </.table>
 
-      <h2 class="font-bold text-lg">Přidat nebo navrhnout administrátora ↓</h2>
+      <h2 class="font-bold text-lg">Přidat nebo navrhnout organizátora ↓</h2>
 
       <.form
         for={@form}
@@ -99,7 +99,7 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
 
         <.tooltip class="absolute top-2 right-2 sm:top-4 sm:right-4">
           <p class="text-sm font-semibold text-primary">
-            Předání hlavního administrátora znamená, že ztratíte veškerou kontrolu nad ostatními administrátory a nad nastavování přednášek. Sami budete nastaveni jako běžný administrátor.
+            Předání hlavního administrátora znamená, že ztratíte veškerou kontrolu nad ostatními administrátory a nad nastavování přednášek. Sami budete nastaveni jako organizátor.
           </p>
         </.tooltip>
 

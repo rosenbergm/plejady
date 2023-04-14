@@ -5,8 +5,7 @@ defmodule PlejadyWeb.AdminSettingsLive.Index do
 
   alias Plejady.Accounts
 
-  # TODO: Uncomment this!
-  # on_mount {UserAuth, :ensure_lead}
+  on_mount {UserAuth, :ensure_lead}
 
   @impl true
   def mount(_params, _session, socket) do
