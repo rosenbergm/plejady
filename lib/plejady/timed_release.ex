@@ -15,7 +15,7 @@ defmodule Plejady.TimedRelease do
   end
 
   @impl true
-  def handle_cast({:update, {_start_time, _end_time} =  new_time}, _old_time) do
+  def handle_cast({:update, {_start_time, _end_time} = new_time}, _old_time) do
     {:noreply, new_time}
   end
 
@@ -42,7 +42,8 @@ defmodule Plejady.TimedRelease do
       %{
         is_open: false,
         has_ended: true,
-        timed_release: nil
+        timed_release: nil,
+        timed_release_end: nil
       }
       |> Config.update_config()
 
@@ -50,7 +51,6 @@ defmodule Plejady.TimedRelease do
 
       send(self(), :kill)
     end
-
 
     Process.send_after(self(), :tick, 5000)
 

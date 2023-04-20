@@ -21,8 +21,7 @@ defmodule PlejadyWeb.AppLive do
        timeblocks: registry.timeblocks,
        rooms: registry.rooms,
        presentations: registry.presentations,
-       config: config,
-       has_ended: config.has_ended
+       config: config
      )}
   end
 
@@ -63,7 +62,18 @@ defmodule PlejadyWeb.AppLive do
 
   def handle_info(%{event: "refresh"}, socket) do
     config = Plejady.Config.get_config()
-    {:noreply, socket |> push_redirect(to: ~p"/app") |> put_flash(:info, if config.has_ended do "Přihlašování bylo ukončeno!" else "Přihlašování bylo spuštěno!" end)}
+
+    {:noreply,
+     socket
+     |> push_redirect(to: ~p"/app")
+     |> put_flash(
+       :info,
+       if config.has_ended do
+         "Přihlašování bylo ukončeno!"
+       else
+         "Přihlašování bylo spuštěno!"
+       end
+     )}
   end
 
   def format_datetime(nil), do: nil
