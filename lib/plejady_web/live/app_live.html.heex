@@ -20,14 +20,14 @@
 </.app_header>
 
 <h1
-  :if={not @config.is_open and !@config.timed_release}
+  :if={not @config.is_open and not @config.has_ended and !@config.timed_release}
   class="text-lg font-bold text-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
 >
   Přihlašování zatím není otevřené.
 </h1>
 
 <h1
-  :if={not @config.is_open and @config.timed_release}
+  :if={not @config.is_open and not @config.has_ended and @config.timed_release}
   class="text-lg font-bold text-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
 >
   Přihlašování se otevře <%= format_datetime(@config.timed_release) %>.

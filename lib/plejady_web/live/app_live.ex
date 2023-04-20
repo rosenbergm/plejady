@@ -61,7 +61,9 @@ defmodule PlejadyWeb.AppLive do
   end
 
   def handle_info(%{event: "refresh"}, socket) do
-    config = Plejady.Config.get_config()
+    config =
+      Plejady.Config.get_config()
+      |> IO.inspect()
 
     {:noreply,
      socket
