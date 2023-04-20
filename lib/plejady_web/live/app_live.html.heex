@@ -91,8 +91,9 @@
                     class={[
                       "presentation bg-tertiary/50 p-3 cursor-pointer hover:bg-tertiary/90 transition relative",
                       Map.get(@occupancy, Map.get(presentation, :id), 0) >= max_capacity &&
-                        "disabled cursor-not-allowed",
-                      (@config.has_ended || @current_user.role != :user) && "cursor-not-allowed",
+                        "disabled cursor-not-allowed hover:bg-tertiary/50",
+                      (@config.has_ended || @current_user.role != :user) &&
+                        "cursor-not-allowed hover:bg-tertiary/50",
                       presentation.id in @signed_up_for && "sel"
                     ]}
                     align="center"
