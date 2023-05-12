@@ -20,8 +20,8 @@ input[type=number] {
 }
 
 .disabled {
-  pointer-events: none;
   cursor: not-allowed !important;
+  pointer-events: none;
   opacity: 0.3;
 }
 
@@ -50,6 +50,8 @@ progress {
   height: 100%;
   width: calc(var(--progress) * 100%);
   background: #4F3366;
+
+  transition: width 100ms ease-in-out;
 }
 
 .pagebreak tr {

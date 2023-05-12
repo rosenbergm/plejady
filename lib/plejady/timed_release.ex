@@ -4,8 +4,7 @@ defmodule Plejady.TimedRelease do
   """
   use GenServer
 
-  alias Plejady.{CacheInitiator, Config}
-  alias Plejady.Config.Schema
+  alias Plejady.{CacheInitiator, Config, Registry}
 
   @impl true
   def init({start_time, end_time}) do
@@ -26,6 +25,8 @@ defmodule Plejady.TimedRelease do
     if not config.is_open && DateTime.compare(DateTime.utc_now(), start_time) == :gt do
       CacheInitiator.initiate()
 
+      send(self(), :test_registry)
+
       %{
         is_open: true,
         has_ended: false,
@@ -37,7 +38,8 @@ defmodule Plejady.TimedRelease do
     end
 
     if config.is_open && DateTime.compare(DateTime.utc_now(), end_time) == :gt do
-      CacheInitiator.initiate()
+      # ! Uncomment when not brute testing the system.
+      # CacheInitiator.initiate()
 
       %{
         is_open: false,
@@ -53,6 +55,26 @@ defmodule Plejady.TimedRelease do
     end
 
     Process.send_after(self(), :tick, 5000)
+
+    {:noreply, timing}
+  end
+
+  # ! Uncomment this handler to brute test the system.
+  @impl true
+  def handle_info(:test_registry, timing) do
+    presentations = Registry.get() |> elem(1) |> then(& &1.presentations)
+
+    Enum.each(0..9, fn _ ->
+      Registry.update(
+        [],
+        Enum.random(presentations).id,
+        "fake_#{:crypto.strong_rand_bytes(8) |> Base.encode64() |> binary_part(0, 8)}"
+      )
+    end)
+
+    PlejadyWeb.Endpoint.broadcast_from(self(), "presentations", "update_registry", nil)
+
+    Process.send_after(self(), :test_registry, 2000)
 
     {:noreply, timing}
   end
