@@ -27,7 +27,7 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
     <article class="px-4 lg:px-16 space-y-6">
       <h2 class="font-bold text-lg">Organizační tým ↓</h2>
 
-      <.table id="admins" rows={@streams.admins}>
+      <.table :if={Enum.count(@streams.admins) != 0} id="admins" rows={@streams.admins}>
         <:col :let={{_id, admin}} label="Jméno">
           <.icon :if={admin.role == :lead} name="hero-building-library" class="w-4 h-4" />
           <%= admin.given_name %> <%= admin.last_name %>
@@ -49,9 +49,17 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
         </:action>
       </.table>
 
+      <p :if={Enum.count(@streams.admins) == 0} class="text-sm font-semibold opacity-70">
+        Zatím jste nepřidali žádného administrátora
+      </p>
+
       <h2 class="font-bold text-lg">Navržení organizátoři ↓</h2>
 
-      <.table id="suggested_admins" rows={@streams.suggested_admins}>
+      <.table
+        :if={Enum.count(@streams.suggested_admins) != 0}
+        id="suggested_admins"
+        rows={@streams.suggested_admins}
+      >
         <:col :let={{_id, admin}} label="E-mail"><%= admin.email %></:col>
 
         <:action :let={{id, admin}}>
@@ -66,6 +74,10 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
           </.link>
         </:action>
       </.table>
+
+      <p :if={Enum.count(@streams.suggested_admins) == 0} class="text-sm font-semibold opacity-70">
+        Zatím jste nenavrhli žádného administrátora
+      </p>
 
       <h2 class="font-bold text-lg">Přidat nebo navrhnout organizátora ↓</h2>
 
