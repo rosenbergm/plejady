@@ -88,17 +88,21 @@
                 <% else %>
                   <% max_capacity = Map.get(presentation, :capacity) || Map.get(room, :capacity) %>
                   <td
-                    class={[
-                      "presentation bg-tertiary/50 p-3 cursor-pointer hover:bg-tertiary/90 transition relative",
-                      Map.get(@occupancy, Map.get(presentation, :id), 0) >= max_capacity &&
-                        "disabled cursor-not-allowed hover:bg-tertiary/50",
-                      (@config.has_ended || @current_user.role != :user) &&
-                        "cursor-not-allowed hover:bg-tertiary/50",
-                      presentation.id in @signed_up_for && "sel"
-                    ]}
+                    class={
+                      [
+                        "presentation bg-tertiary/50 p-3 cursor-pointer hover:bg-tertiary/90 transition relative",
+                        Map.get(@occupancy, Map.get(presentation, :id), 0) >= max_capacity &&
+                          "disabled cursor-not-allowed hover:bg-tertiary/50",
+                        # ! When NOT brute force testing: Add `|| @current_user.role != :user` for normal usage
+                        @config.has_ended &&
+                          "cursor-not-allowed hover:bg-tertiary/50",
+                        presentation.id in @signed_up_for && "sel"
+                      ]
+                    }
                     align="center"
                     phx-click={
-                      not @config.has_ended && @current_user.role == :user &&
+                      # ! When NOT brute force testing: change this to `== :user` for normal usage
+                      not @config.has_ended && @current_user.role != :admin &&
                         JS.push("toggle-presentation", value: %{presentation_id: presentation.id})
                     }
                   >

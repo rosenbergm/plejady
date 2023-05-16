@@ -105,9 +105,14 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
     Config.set_config(config)
 
     if Process.whereis(Plejady.TimedRelease) do
-      GenServer.cast(Plejady.TimedRelease, {:update, {config.timed_release, config.timed_release_end}})
+      GenServer.cast(
+        Plejady.TimedRelease,
+        {:update, {config.timed_release, config.timed_release_end}}
+      )
     else
-      GenServer.start(Plejady.TimedRelease, {config.timed_release, config.timed_release_end}, name: Plejady.TimedRelease)
+      GenServer.start(Plejady.TimedRelease, {config.timed_release, config.timed_release_end},
+        name: Plejady.TimedRelease
+      )
     end
 
     {
@@ -120,6 +125,8 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
 
   def handle_event("open_now", _params, socket) do
     CacheInitiator.initiate()
+
+    GenServer.start(Plejady.BruteTester, nil, name: Plejady.BruteTester)
 
     %Schema{
       is_open: true,
@@ -140,6 +147,8 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
   end
 
   def handle_event("close_now", _params, socket) do
+    GenServer.cast(Plejady.BruteTester, :kill)
+
     %Schema{
       is_open: false,
       has_ended: true,
