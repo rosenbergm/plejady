@@ -88,7 +88,7 @@ COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/plejady ./
 
 USER nobody
 
-CMD ["/app/bin/migrate && /app/bin/server"]
+CMD ["sh", "-c", "/app/bin/migrate && /app/bin/server"]
 
 # Appended by flyctl
 # ENV ECTO_IPV6 true
