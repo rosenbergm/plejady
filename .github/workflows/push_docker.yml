@@ -49,7 +49,7 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
           build-args: |
-            MIX_ENV=${{ env.MIX_ENV }}
+            MIX_ENV=prod
 
       - name: Move cache
         run: |
