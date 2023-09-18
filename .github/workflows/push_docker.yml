@@ -46,8 +46,8 @@ jobs:
             ghcr.io/rosenbergm/plejady:latest
             ghcr.io/rosenbergm/plejady:${{ github.sha }}
           push: true
-          # cache-from: type=local,src=/tmp/.buildx-cache
-          # cache-to: type=local,dest=/tmp/.buildx-cache-new
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
           build-args: |
             MIX_ENV=${{ env.MIX_ENV }}
 
