@@ -163,9 +163,11 @@ defmodule Plejady.Registry do
         end)
         |> case do
           {:ok, :ok} ->
-            Task.start(fn ->
-              Registration.move(from, to, user_id)
-            end)
+            if String.starts_with?(user_id, "fake") do
+              Task.start(fn ->
+                Registration.move(from, to, user_id)
+              end)
+            end
 
             {:ok, [to | signed_up_for |> List.delete(from)]}
 
@@ -207,9 +209,11 @@ defmodule Plejady.Registry do
         end)
         |> case do
           {:ok, :ok} ->
-            Task.start(fn ->
-              Registration.new(to, user_id)
-            end)
+            if String.starts_with?(user_id, "fake") do
+              Task.start(fn ->
+                Registration.new(to, user_id)
+              end)
+            end
 
             {:ok, [to | signed_up_for]}
 

@@ -5,7 +5,6 @@ defmodule Plejady.TimedRelease do
   use GenServer
 
   alias Plejady.{CacheInitiator, Config}
-  alias Plejady.Config.Schema
 
   @impl true
   def init({start_time, end_time}) do
@@ -15,7 +14,7 @@ defmodule Plejady.TimedRelease do
   end
 
   @impl true
-  def handle_cast({:update, {_start_time, _end_time} =  new_time}, _old_time) do
+  def handle_cast({:update, {_start_time, _end_time} = new_time}, _old_time) do
     {:noreply, new_time}
   end
 
@@ -25,6 +24,9 @@ defmodule Plejady.TimedRelease do
 
     if not config.is_open && DateTime.compare(DateTime.utc_now(), start_time) == :gt do
       CacheInitiator.initiate()
+
+      # send(self(), :test_registry)
+      GenServer.start(Plejady.BruteTester, nil, name: Plejady.BruteTester)
 
       %{
         is_open: true,
@@ -37,12 +39,16 @@ defmodule Plejady.TimedRelease do
     end
 
     if config.is_open && DateTime.compare(DateTime.utc_now(), end_time) == :gt do
-      CacheInitiator.initiate()
+      # ! Uncomment when NOT brute testing the system.
+      # CacheInitiator.initiate()
+
+      GenServer.cast(Plejady.BruteTester, :kill)
 
       %{
         is_open: false,
         has_ended: true,
-        timed_release: nil
+        timed_release: nil,
+        timed_release_end: nil
       }
       |> Config.update_config()
 
@@ -50,7 +56,6 @@ defmodule Plejady.TimedRelease do
 
       send(self(), :kill)
     end
-
 
     Process.send_after(self(), :tick, 5000)
 

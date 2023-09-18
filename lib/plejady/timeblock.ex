@@ -47,7 +47,7 @@ defmodule Plejady.Timeblock do
   end
 
   def format_time(%Time{} = time) do
-    Plejady.Cldr.DateTime.to_string!(time, format: "hh:mm")
+    Plejady.Cldr.DateTime.to_string!(time, format: "HH:mm")
   end
 
   @doc """

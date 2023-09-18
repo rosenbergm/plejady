@@ -1,4 +1,13 @@
-<.app_header title={if @has_ended do "Váš finální rozvrh" else "Přihlašujte se!" end} current_user={@current_user}>
+<.app_header
+  title={
+    if @config.has_ended do
+      "Váš finální rozvrh"
+    else
+      "Přihlašujte se!"
+    end
+  }
+  current_user={@current_user}
+>
   <:actions>
     <.link
       :if={@current_user.role == :lead}
@@ -11,20 +20,20 @@
 </.app_header>
 
 <h1
-  :if={not @config.is_open and !@config.timed_release}
+  :if={not @config.is_open and not @config.has_ended and !@config.timed_release}
   class="text-lg font-bold text-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
 >
   Přihlašování zatím není otevřené.
 </h1>
 
 <h1
-  :if={@config.timed_release}
+  :if={not @config.is_open and not @config.has_ended and @config.timed_release}
   class="text-lg font-bold text-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
 >
   Přihlašování se otevře <%= format_datetime(@config.timed_release) %>.
 </h1>
 
-<section :if={@config.is_open || @has_ended} class="px-4 md:px-4 lg:px-16 h-full w-screen">
+<section :if={@config.is_open || @config.has_ended} class="px-4 md:px-4 lg:px-16 h-full w-screen">
   <div class="flow-root h-full pt-2 md:pb-8">
     <div class="-my-2 -mx-4 overflow-x-auto md:-mx-4 lg:-mx-16 h-full">
       <div class="inline-block min-w-full align-middle md:px-4 lg:px-16 h-full">
@@ -79,16 +88,21 @@
                 <% else %>
                   <% max_capacity = Map.get(presentation, :capacity) || Map.get(room, :capacity) %>
                   <td
-                    class={[
-                      "presentation bg-tertiary/50 p-3 cursor-pointer hover:bg-tertiary/90 transition relative",
-                      Map.get(@occupancy, Map.get(presentation, :id), 0) >= max_capacity &&
-                        "disabled cursor-not-allowed",
-                      (@has_ended || @current_user.role != :user ) && "cursor-not-allowed",
-                      presentation.id in @signed_up_for && "sel"
-                    ]}
+                    class={
+                      [
+                        "presentation bg-tertiary/50 p-3 cursor-pointer hover:bg-tertiary/90 transition relative",
+                        Map.get(@occupancy, Map.get(presentation, :id), 0) >= max_capacity &&
+                          "disabled cursor-not-allowed hover:bg-tertiary/50",
+                        # ! When NOT brute force testing: Add `|| @current_user.role != :user` for normal usage
+                        @config.has_ended &&
+                          "cursor-not-allowed hover:bg-tertiary/50",
+                        presentation.id in @signed_up_for && "sel"
+                      ]
+                    }
                     align="center"
                     phx-click={
-                      not @has_ended && @current_user.role == :user &&
+                      # ! When NOT brute force testing: change this to `== :user` for normal usage
+                      not @config.has_ended && @current_user.role != :admin &&
                         JS.push("toggle-presentation", value: %{presentation_id: presentation.id})
                     }
                   >

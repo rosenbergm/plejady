@@ -23,4 +23,15 @@ defmodule PlejadyWeb.AdminSettingsLive.Index do
     socket
     |> assign(:page_title, "Další nastavení")
   end
+
+  @impl true
+  def handle_event(
+        "clear_cache",
+        _params,
+        socket
+      ) do
+    Plejady.Registry.clear()
+    Plejady.CacheInitiator.initiate()
+    {:noreply, socket}
+  end
 end

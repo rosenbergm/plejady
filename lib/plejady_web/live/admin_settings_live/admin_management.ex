@@ -27,7 +27,7 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
     <article class="px-4 lg:px-16 space-y-6">
       <h2 class="font-bold text-lg">Organizační tým ↓</h2>
 
-      <.table id="admins" rows={@streams.admins}>
+      <.table :if={Enum.count(@streams.admins) != 0} id="admins" rows={@streams.admins}>
         <:col :let={{_id, admin}} label="Jméno">
           <.icon :if={admin.role == :lead} name="hero-building-library" class="w-4 h-4" />
           <%= admin.given_name %> <%= admin.last_name %>
@@ -49,9 +49,17 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
         </:action>
       </.table>
 
+      <p :if={Enum.count(@streams.admins) == 0} class="text-sm font-semibold opacity-70">
+        Zatím jste nepřidali žádného organizátora
+      </p>
+
       <h2 class="font-bold text-lg">Navržení organizátoři ↓</h2>
 
-      <.table id="suggested_admins" rows={@streams.suggested_admins}>
+      <.table
+        :if={Enum.count(@streams.suggested_admins) != 0}
+        id="suggested_admins"
+        rows={@streams.suggested_admins}
+      >
         <:col :let={{_id, admin}} label="E-mail"><%= admin.email %></:col>
 
         <:action :let={{id, admin}}>
@@ -59,13 +67,17 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
             phx-click={
               JS.push("delete-suggested", target: @myself, value: %{id: admin.id}) |> hide("##{id}")
             }
-            data-confirm={"Opravdu chcete odebrat navrženého administrátora #{admin.email}?"}
+            data-confirm={"Opravdu chcete odebrat navrženého organizátora #{admin.email}?"}
             class="underline hover:no-underline hover:text-primary"
           >
             Odebrat
           </.link>
         </:action>
       </.table>
+
+      <p :if={Enum.count(@streams.suggested_admins) == 0} class="text-sm font-semibold opacity-70">
+        Zatím jste nenavrhli žádného organizátora
+      </p>
 
       <h2 class="font-bold text-lg">Přidat nebo navrhnout organizátora ↓</h2>
 
@@ -80,7 +92,7 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
         <.input
           field={@form[:email]}
           type="email"
-          label="E-mail nového administrátora"
+          label="E-mail nového organizátora"
           placeholder="polouckova.karla@student.alej.cz"
         />
 
@@ -94,12 +106,12 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
         class="flex flex-col gap-4 relative max-w-[50rem] p-2 sm:p-4 rounded ring-4 ring-red-400/50 hover:ring-red-400 transition"
       >
         <h6 class="text-md font-bold pr-6">
-          Předat roli hlavního administrátora ↓
+          Předat roli hlavního organizátora ↓
         </h6>
 
         <.tooltip class="absolute top-2 right-2 sm:top-4 sm:right-4">
           <p class="text-sm font-semibold text-primary">
-            Předání hlavního administrátora znamená, že ztratíte veškerou kontrolu nad ostatními administrátory a nad nastavování přednášek. Sami budete nastaveni jako organizátor.
+            Předání hlavního organizátora znamená, že ztratíte veškerou kontrolu nad ostatními organizátory a nad nastavování přednášek. Sami budete nastaveni jako organizátor.
           </p>
         </.tooltip>
 
@@ -115,13 +127,13 @@ defmodule PlejadyWeb.AdminSettingsLive.AdminManagement do
             field={@transfer[:email]}
             id="transfer-email"
             type="email"
-            label="E-mail nového hlavního administrátora"
+            label="E-mail nového hlavního organizátora"
             placeholder="dobrenka.kateryna@student.alej.cz"
           />
 
           <.button
             class="flex-1 sm:flex-none"
-            data-confirm="Opravdu chcete přenést své hlavní administrátorství? Ztratíte tím veškerou kontrolu nad ostatními administrátory!"
+            data-confirm="Opravdu chcete přenést své hlavní organizátorství? Ztratíte tím veškerou kontrolu nad ostatními organizátory!"
             phx-disable-with="Ukládám..."
           >
             Předat

@@ -35,7 +35,6 @@ defmodule Plejady.Registration do
   def new(presentation_id, user_id) do
     %Registration{}
     |> changeset(%{presentation_id: presentation_id, user_id: user_id})
-    |> Repo.insert()
   end
 
   @doc """
