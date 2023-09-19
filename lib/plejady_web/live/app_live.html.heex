@@ -31,6 +31,13 @@
   class="text-lg font-bold text-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
 >
   Přihlašování se otevře <%= format_datetime(@config.timed_release) %>.
+
+  <br>
+
+  <p class="text-sm font-semibold">
+    Až se přihlašování spustí, budete si moct vybrat přednášku kliknutím na políčko. <br>
+    Pokud políčko <b>zfialoví</b>, znamená to, že jste na přednášku úspěšně zapsaní.
+  </p>
 </h1>
 
 <section :if={@config.is_open || @config.has_ended} class="px-4 md:px-4 lg:px-16 h-full w-screen">

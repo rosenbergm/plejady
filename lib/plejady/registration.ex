@@ -28,13 +28,20 @@ defmodule Plejady.Registration do
   end
 
   @doc """
-  Creates a new registration and inserts it into the database.
-
-  > This is a database action.
+  Creates a new registration changeset.
   """
   def new(presentation_id, user_id) do
     %Registration{}
     |> changeset(%{presentation_id: presentation_id, user_id: user_id})
+  end
+
+  @doc """
+  Creates a new registration and inserts it into the database.
+
+  > This is a database action.
+  """
+  def create_new(presentation_id, user_id) do
+    new(presentation_id, user_id)
     |> Repo.insert()
   end
 

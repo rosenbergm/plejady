@@ -208,7 +208,7 @@ defmodule Plejady.Registry do
         |> case do
           {:ok, :ok} ->
             Task.start(fn ->
-              Registration.new(to, user_id)
+              Registration.create_new(to, user_id)
             end)
 
             {:ok, [to | signed_up_for]}
