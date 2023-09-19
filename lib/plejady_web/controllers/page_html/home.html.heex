@@ -4,7 +4,16 @@
 
   <article class="space-y-4">
     <p class="text-sm font-medium tracking-tight max-w-sm">
-      Pro přihlašování použijte svoje školní e-maily<br />končící @student.alej.cz.
+      Pro přihlašování použijte svoje školní e-maily<br />končící <b>@student.alej.cz</b>.
+    </p>
+    <p class="text-sm font-medium tracking-tight max-w-sm">
+      Pomocí školních účtů se přihlašujte jen tehdy, <b>pokud jste skutečně studenti</b>. Pokud ne, využijte
+      <.link
+        class="text-sm font-medium tracking-tight underline hover:no-underline"
+        href={~p"/guests"}
+      >
+        přihlašování pro hosty
+      </.link>.
     </p>
     <.link href={~p"/auth/google"} class="inline-block">
       <.button>
