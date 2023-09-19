@@ -25,9 +25,6 @@ defmodule Plejady.TimedRelease do
     if not config.is_open && DateTime.compare(DateTime.utc_now(), start_time) == :gt do
       CacheInitiator.initiate()
 
-      # send(self(), :test_registry)
-      GenServer.start(Plejady.BruteTester, nil, name: Plejady.BruteTester)
-
       %{
         is_open: true,
         has_ended: false,
@@ -39,10 +36,7 @@ defmodule Plejady.TimedRelease do
     end
 
     if config.is_open && DateTime.compare(DateTime.utc_now(), end_time) == :gt do
-      # ! Uncomment when NOT brute testing the system.
-      # CacheInitiator.initiate()
-
-      GenServer.cast(Plejady.BruteTester, :kill)
+      CacheInitiator.initiate()
 
       %{
         is_open: false,

@@ -126,8 +126,6 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
   def handle_event("open_now", _params, socket) do
     CacheInitiator.initiate()
 
-    GenServer.start(Plejady.BruteTester, nil, name: Plejady.BruteTester)
-
     %Schema{
       is_open: true,
       has_ended: false,
@@ -147,8 +145,6 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
   end
 
   def handle_event("close_now", _params, socket) do
-    GenServer.cast(Plejady.BruteTester, :kill)
-
     %Schema{
       is_open: false,
       has_ended: true,
