@@ -35,8 +35,8 @@
   <br>
 
   <p class="text-sm font-semibold">
-    Až se přihlašování spustí, budete si moct vybrat přednášku kliknutím na políčko. <br>
-    Pokud políčko <b>zfialoví</b>, znamená to, že jste na přednášku úspěšně zapsaní.
+    Až se přihlašování spustí, budete si moci<br>vybrat přednášku kliknutím na políčko.<br>
+    Pokud políčko <b>zfialoví</b>, znamená to, že<br>jste na přednášku úspěšně zapsaní.
   </p>
 </h1>
 
@@ -132,7 +132,7 @@
                         <%= Map.get(presentation, :description) %>
                       </p>
                       <p class="text-sm font-semibold tracking-tight">
-                        Kapacita: <%= max_capacity %>
+                        Zbývá <%= max_capacity - Map.get(@occupancy, Map.get(presentation, :id), 0) %> z <%= max_capacity %> míst
                       </p>
                     </div>
                   </td>
