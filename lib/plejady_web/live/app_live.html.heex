@@ -26,19 +26,18 @@
   Přihlašování zatím není otevřené.
 </h1>
 
-<h1
+<section
   :if={not @config.is_open and not @config.has_ended and @config.timed_release}
-  class="text-lg font-bold text-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
+  class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-4"
 >
-  Přihlašování se otevře <%= format_datetime(@config.timed_release) %>.
+  <h1 class="text-lg font-bold text-center">
+    Přihlašování se otevře <%= format_datetime(@config.timed_release) %>.
+  </h1>
 
-  <br>
-
-  <p class="text-sm font-medium tracking-tight max-w-sm">
-    Až se přihlašování spustí, budete si moci vybrat přednášku kliknutím na políčko.<br>
-    Pokud políčko <b>zfialoví</b>, znamená to, že <b>jste na přednášku úspěšně zapsaní</b>.
+  <p class="text-sm font-medium tracking-tight max-w-sm text-center">
+    Až se přihlašování spustí, budete si moci vybrat přednášku kliknutím na políčko. Pokud políčko <b>zmodrá</b>, znamená to, že <b>jste na přednášku úspěšně zapsaní</b>.
   </p>
-</h1>
+</section>
 
 <section :if={@config.is_open || @config.has_ended} class="px-4 md:px-4 lg:px-16 h-full w-screen">
   <div class="flow-root h-full pt-2 md:pb-8">
@@ -95,16 +94,14 @@
                 <% else %>
                   <% max_capacity = Map.get(presentation, :capacity) || Map.get(room, :capacity) %>
                   <td
-                    class={
-                      [
-                        "presentation bg-tertiary/50 p-3 cursor-pointer hover:bg-tertiary/90 transition relative",
-                        Map.get(@occupancy, Map.get(presentation, :id), 0) >= max_capacity &&
-                          "disabled cursor-not-allowed hover:bg-tertiary/50",
-                        (@config.has_ended || @current_user.role != :user) &&
-                          "cursor-not-allowed hover:bg-tertiary/50",
-                        presentation.id in @signed_up_for && "sel"
-                      ]
-                    }
+                    class={[
+                      "presentation bg-tertiary/50 p-3 cursor-pointer hover:bg-tertiary/90 transition relative",
+                      Map.get(@occupancy, Map.get(presentation, :id), 0) >= max_capacity &&
+                        "disabled cursor-not-allowed hover:bg-tertiary/50",
+                      (@config.has_ended || @current_user.role != :user) &&
+                        "cursor-not-allowed hover:bg-tertiary/50",
+                      presentation.id in @signed_up_for && "sel"
+                    ]}
                     align="center"
                     phx-click={
                       not @config.has_ended && @current_user.role == :user &&
@@ -130,7 +127,8 @@
                         <%= Map.get(presentation, :description) %>
                       </p>
                       <p class="text-sm font-semibold tracking-tight">
-                        Zbývá <%= max_capacity - Map.get(@occupancy, Map.get(presentation, :id), 0) %> z <%= max_capacity %> míst
+                        Zbývá <%= max_capacity -
+                          Map.get(@occupancy, Map.get(presentation, :id), 0) %> z <%= max_capacity %> míst
                       </p>
                     </div>
                   </td>
