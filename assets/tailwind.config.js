@@ -18,8 +18,8 @@ module.exports = {
         // secondary: "#FFFCF0",
         // tertiary: "#FAEDCC"
         primary: "#0B49AD",
-        secondary: "#FFFCF0",
-        tertiary: "#FAEDCC"
+        secondary: "#FFFFFF",
+        tertiary: "#D7E7FF"
       },
       fontFamily: {
         "sans": ["Manrope", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif"],

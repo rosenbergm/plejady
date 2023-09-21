@@ -35,7 +35,7 @@ progress {
   left: -1px;
 
   display: inline-block;
-  background: rgba(250, 237, 204, 0.4);
+  background: rgba(#D8E7FF, 0.66);
   height: 6px;
   width: 100%;
   border-radius: 0;
@@ -76,7 +76,7 @@ progress {
 td.presentation.sel {
   transition: all 0.2s ease-in-out;
   background: #0B49AD !important;
-  color: #FFF9E4 !important;
+  color: #D8E7FF !important;
 }
 
 td.presentation.sel .progress-container {
@@ -88,5 +88,5 @@ td.presentation.sel .progress-container {
 td.presentation.sel .progress-container::before {
   transition: all 0.2s ease-in-out;
 
-  background: #F2DA9A !important;
+  background: #D8E7FF !important;
 }
