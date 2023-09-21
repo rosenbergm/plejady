@@ -28,8 +28,13 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
 
-    <%!-- <script defer data-domain="plejady.alej.cz" src="https://analytics.marrrt.in/js/plausible.js">
-    </script> --%>
+    <script
+      async
+      defer
+      data-domain="plejady.alej.cz"
+      src="https://analytics.michaljanocko.com/js/plausible.js"
+    >
+    </script>
   </head>
   <body class="bg-secondary text-primary antialiased w-screen h-screen [&>.phx-container]:h-full">
     <%= @inner_content %>
