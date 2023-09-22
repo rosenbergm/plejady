@@ -7,6 +7,8 @@ defmodule PlejadyWeb.GuestLive do
   alias Plejady.{Accounts, Config}
 
   def mount(_params, _session, socket) do
+    if connected?(socket), do: PlejadyWeb.Endpoint.subscribe("refresher")
+
     free_places = Accounts.get_free_guest_places()
 
     config = Config.get_config()
@@ -14,7 +16,7 @@ defmodule PlejadyWeb.GuestLive do
     {:ok,
      assign(socket,
        free_places: free_places,
-       capacity: config.guest_capacity,
+       config: config,
        form: to_form(Guest.new(%Guest{}))
      )}
   end
@@ -31,8 +33,9 @@ defmodule PlejadyWeb.GuestLive do
         <p class="text-sm font-medium tracking-tight max-w-xs mx-auto">
           Pro přihlášení hostů stačí zadat e-mailovou adresu a odeslat ji. Budeme s vámi počítat.
         </p>
+
         <p class="text-sm font-medium tracking-tight">
-          Upozorňujeme však, že kapacita je <%= @capacity %> míst.
+          Upozorňujeme však, že kapacita je <%= @config.guest_capacity %> míst.
           <b>Zbývá už jen <%= @free_places %> míst.</b>
         </p>
 
@@ -40,17 +43,43 @@ defmodule PlejadyWeb.GuestLive do
           for={@form}
           phx-change="validate"
           phx-submit="save"
-          class="flex sm:items-center flex-col sm:flex-row gap-4"
+          class="flex sm:items-start flex-col sm:flex-row gap-4"
         >
           <.input
             field={@form[:email]}
             placeholder="v.havel@gmail.com"
             type="email"
-            disabled={@free_places == 0}
+            disabled={@free_places == 0 || !@config.is_open || @config.has_ended}
           />
 
-          <.button class="flex-1 sm:flex-none" disabled={@free_places == 0}>Odeslat</.button>
+          <.button
+            class="flex-1 sm:flex-none"
+            disabled={@free_places == 0 || !@config.is_open || @config.has_ended}
+          >
+            Odeslat
+          </.button>
         </.form>
+
+        <p :if={@free_places == 0} class="text-sm font-medium tracking-tight max-w-xs mx-auto">
+          Bohužel jsou již všechna místa obsazena!
+        </p>
+        <p
+          :if={!@config.is_open && !@config.timed_release && !@config.has_ended}
+          class="text-sm font-medium tracking-tight max-w-xs mx-auto"
+        >
+          Ještě se nemůžete přihlásit.
+        </p>
+        <p
+          :if={!@config.is_open && @config.timed_release}
+          class="text-sm font-medium tracking-tight max-w-xs mx-auto"
+        >
+          Ještě se nemůžete přihlásit. Přihlašování začíná <%= Plejady.Datetime.format_datetime(
+            @config.timed_release
+          ) %>.
+        </p>
+        <p :if={@config.has_ended} class="text-sm font-medium tracking-tight max-w-xs mx-auto">
+          Přihlašování bylo ukončeno!
+        </p>
       </article>
     </main>
     """
@@ -83,8 +112,24 @@ defmodule PlejadyWeb.GuestLive do
            |> redirect(to: "/")}
 
         {:error, %Ecto.Changeset{} = changeset} ->
-          {:noreply, assign(socket, changeset: to_form(changeset))}
+          {:noreply, assign(socket, form: to_form(changeset))}
       end
     end
+  end
+
+  def handle_info(%{event: "refresh"}, socket) do
+    config = Config.get_config()
+
+    {:noreply,
+     socket
+     |> push_redirect(to: ~p"/guests")
+     |> put_flash(
+       :info,
+       if config.has_ended do
+         "Přihlašování hostů bylo ukončeno!"
+       else
+         "Přihlašování hostů bylo spuštěno!"
+       end
+     )}
   end
 end

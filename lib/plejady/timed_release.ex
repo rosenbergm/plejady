@@ -32,7 +32,7 @@ defmodule Plejady.TimedRelease do
       }
       |> Config.update_config()
 
-      PlejadyWeb.Endpoint.broadcast_from(self(), "presentations", "refresh", nil)
+      PlejadyWeb.Endpoint.broadcast_from(self(), "refresher", "refresh", nil)
     end
 
     if config.is_open && DateTime.compare(DateTime.utc_now(), end_time) == :gt do
@@ -46,7 +46,7 @@ defmodule Plejady.TimedRelease do
       }
       |> Config.update_config()
 
-      PlejadyWeb.Endpoint.broadcast_from(self(), "presentations", "refresh", nil)
+      PlejadyWeb.Endpoint.broadcast_from(self(), "refresher", "refresh", nil)
 
       send(self(), :kill)
     end

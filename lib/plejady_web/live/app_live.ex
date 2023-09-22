@@ -7,6 +7,7 @@ defmodule PlejadyWeb.AppLive do
 
   def mount(_params, _session, socket) do
     if connected?(socket), do: PlejadyWeb.Endpoint.subscribe("presentations")
+    if connected?(socket), do: PlejadyWeb.Endpoint.subscribe("refresher")
 
     %{current_user: current_user} = socket.assigns
 
@@ -74,18 +75,5 @@ defmodule PlejadyWeb.AppLive do
          "Přihlašování bylo spuštěno!"
        end
      )}
-  end
-
-  def format_datetime(nil), do: nil
-
-  def format_datetime(datetime) do
-    formatted(datetime, "d. MMMM yyyy") <> " v " <> formatted(datetime, "HH:mm")
-  end
-
-  defp formatted(datetime, format_string) do
-    Plejady.Cldr.DateTime.to_string!(
-      datetime |> DateTime.shift_zone!("Europe/Prague", Tz.TimeZoneDatabase),
-      format: format_string
-    )
   end
 end

@@ -134,7 +134,7 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
     }
     |> Config.set_config()
 
-    PlejadyWeb.Endpoint.broadcast_from(self(), "presentations", "refresh", nil)
+    PlejadyWeb.Endpoint.broadcast_from(self(), "refresher", "refresh", nil)
 
     {
       :noreply,
@@ -153,7 +153,7 @@ defmodule PlejadyWeb.AdminSettingsLive.TimedRelease do
     }
     |> Config.set_config()
 
-    PlejadyWeb.Endpoint.broadcast_from(self(), "presentations", "refresh", nil)
+    PlejadyWeb.Endpoint.broadcast_from(self(), "refresher", "refresh", nil)
 
     {
       :noreply,

@@ -24,6 +24,10 @@ defmodule Plejady.Accounts.Guest do
     |> cast(params, [:email])
     |> validate_required([:email], message: "Musíte vyplnit e-mail!")
     |> validate_if_not_student(:email)
+    |> unique_constraint(:email,
+      name: "absolvents_email_index",
+      message: "Pod tímto e-mailem už se někdo přihlásil!"
+    )
   end
 
   @mail_regex ~r/^[A-Za-z0-9._%+-]+@(student.)?alej.cz$/

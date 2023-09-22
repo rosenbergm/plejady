@@ -31,7 +31,7 @@
   class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-4"
 >
   <h1 class="text-lg font-bold text-center">
-    Přihlašování se otevře <%= format_datetime(@config.timed_release) %>.
+    Přihlašování se otevře <%= Plejady.Datetime.format_datetime(@config.timed_release) %>.
   </h1>
 
   <p class="text-sm font-medium tracking-tight max-w-sm text-center">
