@@ -66,7 +66,7 @@ defmodule Plejady.MixProject do
       {:ex_cldr, "~> 2.34"},
       {:ex_cldr_plugs, "~> 1.2"},
       {:ex_cldr_dates_times, "~> 2.13"},
-      {:tz, "~> 0.24.0"},
+      {:tz, "~> 0.28"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.29", only: [:dev, :test], runtime: false},
       {:timex, "~> 3.7"}
